@@ -1,7 +1,7 @@
 import React from "react";
 
 import logo from '../assets/img/pizza-logo.svg';
-import Button from "./Header-button";
+import { Button } from "../components";
 
 function Header() {
 
@@ -16,7 +16,7 @@ function Header() {
                     </div>
                 </div>
                 <div className="header__cart">
-                    <Button outline="false" />
+                    <Button outline />
                 </div>
             </div>
         </div>
