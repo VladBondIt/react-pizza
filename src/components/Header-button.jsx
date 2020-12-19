@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function Button({ outline }) {
+function Button() {
     // const buttonClassName = outline === 'false' ? 'button button--outline' : 'button';
     return (
         <a href="/cart.html" className="button button--cart">
