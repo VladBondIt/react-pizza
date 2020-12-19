@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header, Categories, Sort } from './components'
 
 function App() {
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const onSelectPopup = () => {
+    setShowPopup(!showPopup);
+  }
+
   return (
     <>
       <svg display="none">
@@ -9,7 +16,13 @@ function App() {
           <path fill="" d="M291.75,308.1a105.8,105.8,0,1,0,0-211.6H136v32h39.943V276.1H136v32h39.943V352H136v32h39.943v56h32V384H304V352H207.943V308.1ZM207.943,128.5H291.75a73.8,73.8,0,1,1,0,147.6H207.943Z" className="ci-primary" />
         </symbol>
       </svg>
-      <div className="wrapper">
+      <div
+        onClick={(e) => {
+          if (!e.target.matches('.sort__list-item') && !e.target.matches('.sort__name')) {
+            setShowPopup(false);
+          }
+        }}
+        className="wrapper">
         <Header />
         <div className="content">
           <div className="container">
@@ -23,7 +36,10 @@ function App() {
                   'Острые',
                   'Закрытые'
                 ]} />
-              <Sort />
+              <Sort
+                setShowPopup={setShowPopup}
+                showPopup={showPopup}
+                onSelectPopup={onSelectPopup} />
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">

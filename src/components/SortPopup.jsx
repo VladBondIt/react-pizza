@@ -43,14 +43,15 @@
 
 import React, { useState } from 'react'
 
-export default function SortPopup({ items, changeSortText }) {
+export default function SortPopup({ items, changeSortText, onKeyPressed }) {
     const [activeItem, setActiveItem] = useState(0);
 
     const onSelectSort = (inx) => {
         setActiveItem(inx);
     }
     const lists = items.map((list, i) => {
-        const listClassName = activeItem === i ? 'active' : null;
+        let listClassName = 'sort__list-item';
+        listClassName += activeItem === i ? ' active' : '';
 
         return (
             <li
@@ -63,7 +64,10 @@ export default function SortPopup({ items, changeSortText }) {
         )
     })
     return (
-        <div className="sort__popup">
+        <div
+            tabIndex='-1'
+            onKeyDown={onKeyPressed}
+            className="sort__popup">
             <ul>
                 {lists}
             </ul>
