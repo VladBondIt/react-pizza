@@ -49,7 +49,7 @@ export default function SortPopup({ items, changeSortText, onKeyPressed, setShow
 
     const onSelectSort = (i) => {
         setActiveItem(i);
-        setShowPopup(false);
+        // setShowPopup(false);
     }
 
     const lists = items.map((list, i) => {
