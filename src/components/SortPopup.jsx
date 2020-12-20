@@ -43,12 +43,15 @@
 
 import React, { useState } from 'react'
 
-export default function SortPopup({ items, changeSortText, onKeyPressed }) {
+export default function SortPopup({ items, changeSortText, onKeyPressed, setShowPopup, showPopup }) {
+
     const [activeItem, setActiveItem] = useState(0);
 
-    const onSelectSort = (inx) => {
-        setActiveItem(inx);
+    const onSelectSort = (i) => {
+        setActiveItem(i);
+        setShowPopup(false);
     }
+
     const lists = items.map((list, i) => {
         let listClassName = 'sort__list-item';
         listClassName += activeItem === i ? ' active' : '';
@@ -57,17 +60,20 @@ export default function SortPopup({ items, changeSortText, onKeyPressed }) {
             <li
                 onClick={() => {
                     onSelectSort(i);
-                    changeSortText(list)
+                    changeSortText(list);
                 }}
                 key={Math.random() * 10}
-                className={listClassName}>{list}</li>
+                className={listClassName}>
+                {list}
+            </li>
         )
     })
+
     return (
         <div
             tabIndex='-1'
             onKeyDown={onKeyPressed}
-            className="sort__popup">
+            className={showPopup === true ? "sort__popup active" : "sort__popup"}>
             <ul>
                 {lists}
             </ul>
