@@ -1,10 +1,11 @@
 import React from "react";
 
 
+
 function Button() {
     // const buttonClassName = outline === 'false' ? 'button button--outline' : 'button';
     return (
-        <a href="/cart.html" className="button button--cart">
+        <div className="button button--cart">
             <span>520 <svg className="ruble-svg--cart"><use xlinkHref="#ruble" /></svg></span>
             <div className="button__delimiter"></div>
             <svg
@@ -37,7 +38,7 @@ function Button() {
                 />
             </svg>
             <span>3</span>
-        </a>
+        </div>
     );
 }
 
