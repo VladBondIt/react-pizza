@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { Header } from './components';
 import { Home, Cart } from './pages';
@@ -6,10 +6,27 @@ import { Home, Cart } from './pages';
 function App() {
 
   const [showPopup, setShowPopup] = useState(false);
+  const [pizzas, setPizzas] = useState([]);
 
   const onSelectPopup = () => {
     setShowPopup(!showPopup);
   }
+
+  useEffect(() => {
+    fetch("http://localhost:3004/pizzas")
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error(`Could not fetch ${"http://localhost:3004/pizzas"}` +
+            `, received ${resp.status}`);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        setPizzas(data);
+      })
+
+  }, [])
+
 
   return (
     <div
@@ -33,6 +50,7 @@ function App() {
             path="/"
             render={() => (
               <Home
+                pizzas={pizzas}
                 setShowPopup={setShowPopup}
                 showPopup={showPopup}
                 onSelectPopup={onSelectPopup}
