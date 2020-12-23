@@ -14,7 +14,7 @@ function SizeLists({ sizes }) {
         let SizeClassName = !sizes.includes(size) ? 'disabled' : '';
         SizeClassName += activeSize === i && SizeClassName !== 'disabled' ? ' active' : '';
         return (
-            <li onClick={() => onSelectSize(i)} className={SizeClassName} > {size}</li >
+            <li key={i + (Math.random() * 10)} onClick={() => onSelectSize(i)} className={SizeClassName} >{size} см</li >
         )
     });
     return (

@@ -1,6 +1,7 @@
 import React from 'react';
-import TypeLists from './TypeLists'
-import SizeLists from './SizeLists'
+import TypeLists from './TypeLists';
+import SizeLists from './SizeLists';
+// import PropTypes from 'prop-types';
 
 function PizzaBlock({ pizzas }) {
 
@@ -56,5 +57,9 @@ function PizzaBlock({ pizzas }) {
         </div>
     )
 }
+
+// PizzaBlock.propTypes = {
+//     name: PropTypes.string.isRequired,
+// }
 
 export default PizzaBlock;

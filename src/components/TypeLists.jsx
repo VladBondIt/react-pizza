@@ -14,7 +14,7 @@ function TypeLists({ types }) {
         let TypeClassName = !types.includes(i) ? 'disabled' : '';
         TypeClassName += activeType === i ? ' active' : '';
         return (
-            <li onClick={() => onSelectType(i)} className={TypeClassName} > {type}</li >
+            <li key={i + (Math.random() * 10)} onClick={() => onSelectType(i)} className={TypeClassName} > {type}</li >
         )
     });
 
