@@ -11,7 +11,7 @@ function SizeLists({ sizes }) {
     }
 
     const pizzaSize = availabaleSizes.map((size, i) => {
-        let SizeClassName = !sizes.includes(size) ? 'disabled' : ''
+        let SizeClassName = !sizes.includes(size) ? 'disabled' : '';
         SizeClassName += activeSize === i && SizeClassName !== 'disabled' ? ' active' : '';
         return (
             <li onClick={() => onSelectSize(i)} className={SizeClassName} > {size}</li >
