@@ -1,35 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react';
+import TypeLists from './TypeLists'
+import SizeLists from './SizeLists'
 
 function PizzaBlock({ pizzas }) {
-    const [activeType, setActiveType] = useState(0);
-    const [activeSize, setActiveSize] = useState(0);
 
-    const onSelectType = (i) => {
-        setActiveType(i);
-    }
-    const onSelectSize = (i) => {
-        setActiveSize(i);
-    }
+    const pizzaItems = pizzas.map((pizza) => {
 
-    const pizzaItems = pizzas.map((pizza, j) => {
-
-        const { imageUrl, name, types, sizes, price, id } = pizza;
-
-
-        const typesPizza = types.map((type, i) => {
-            const textType = type === 0 ? 'тонкое' : 'традиционное';
-            const TypeClassName = activeType === i ? 'active' : '';
-            return (
-                <li onClick={() => onSelectType(i)} className={TypeClassName} > { textType}</li >
-            )
-        });
-
-        const pizzaSize = sizes.map((size, i) => {
-            const SizeClassName = activeSize === i ? 'active' : '';
-            return (
-                <li onClick={() => onSelectSize(i)} className={SizeClassName} > {size}</li >
-            )
-        });
+        const { imageUrl, name, types, price, sizes, id } = pizza;
 
 
         return (
@@ -44,10 +21,10 @@ function PizzaBlock({ pizzas }) {
                 <h4 className="pizza-block__title">{name}</h4>
                 <div className="pizza-block__selector">
                     <ul>
-                        {typesPizza}
+                        <TypeLists types={types} />
                     </ul>
                     <ul>
-                        {pizzaSize}
+                        <SizeLists sizes={sizes} />
                     </ul>
                 </div>
                 <div className="pizza-block__bottom">
