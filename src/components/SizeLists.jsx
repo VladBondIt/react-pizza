@@ -3,7 +3,7 @@ import React from 'react'
 function SizeLists({ sizes }) {
     const availabaleSizes = [26, 30, 40];
 
-    const [activeSize, setActiveSize] = React.useState(null);
+    const [activeSize, setActiveSize] = React.useState(0);
 
 
     const onSelectSize = (i) => {
@@ -11,8 +11,8 @@ function SizeLists({ sizes }) {
     }
 
     const pizzaSize = availabaleSizes.map((size, i) => {
-        let SizeClassName = activeSize === i ? 'active' : '';
-
+        let SizeClassName = !sizes.includes(size) ? 'disabled' : ''
+        SizeClassName += activeSize === i && SizeClassName !== 'disabled' ? ' active' : '';
         return (
             <li onClick={() => onSelectSize(i)} className={SizeClassName} > {size}</li >
         )
