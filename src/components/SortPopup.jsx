@@ -53,6 +53,7 @@ export default function SortPopup({ items, changeSortText, onKeyPressed, setShow
     }
 
     const lists = items.map((list, i) => {
+        const { name, type } = list
         let listClassName = 'sort__list-item';
         listClassName += activeItem === i ? ' active' : '';
 
@@ -60,11 +61,11 @@ export default function SortPopup({ items, changeSortText, onKeyPressed, setShow
             <li
                 onClick={() => {
                     onSelectSort(i);
-                    changeSortText(list);
+                    changeSortText(name);
                 }}
                 key={Math.random() * 10}
                 className={listClassName}>
-                {list}
+                {name}
             </li>
         )
     })

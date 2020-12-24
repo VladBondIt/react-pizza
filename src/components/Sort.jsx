@@ -43,9 +43,9 @@ function Sort({ showPopup, onSelectPopup, setShowPopup }) {
                 changeSortText={changeSortText}
                 showPopup={showPopup}
                 items={[
-                    'популярности',
-                    'цене',
-                    'алфавиту',
+                    { name: 'популярности', type: 'popular' },
+                    { name: 'цене', type: 'price' },
+                    { name: 'алфавиту', type: 'alphabet' },
                 ]} />
         </div>
     )

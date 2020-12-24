@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 import logo from '../assets/img/pizza-logo.svg';
-import { Button } from "../components";
+import HeaderButton from "./HeaderButton";
 
 function Header() {
 
@@ -17,7 +17,7 @@ function Header() {
                     </div>
                 </Link>
                 <Link to="/cart" className="header__cart">
-                    <Button />
+                    <HeaderButton />
                 </Link>
             </div>
         </div>
