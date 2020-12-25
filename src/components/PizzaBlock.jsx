@@ -1,13 +1,19 @@
 import React from 'react';
 import TypeLists from './TypeLists';
 import SizeLists from './SizeLists';
+import { useSelector } from 'react-redux'
 // import PropTypes from 'prop-types';
 
-function PizzaBlock({ pizzas }) {
+function PizzaBlock() {
+    const { items } = useSelector(({ pizzas }) => {
+        return {
+            items: pizzas.items
+        }
+    });
 
-    const pizzaItems = pizzas.map((pizza) => {
+    const pizzaItems = items.map((item) => {
 
-        const { imageUrl, name, types, price, sizes, id } = pizza;
+        const { imageUrl, name, types, price, sizes, id } = item;
 
 
         return (

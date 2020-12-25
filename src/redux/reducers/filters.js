@@ -4,17 +4,14 @@ const initialState = {
 
 }
 const filters = (state = initialState, action) => {
-    switch (action.type) {
-        case 'SET_SORT_BY':
-            return {
-                ...state,
-                sortBy: action.payload
-            }
-        default:
-            return {
-                state
-            }
+    if (action.type === 'SET_SORT_BY') {
+        return {
+            ...state,
+            sortBy: action.payload
+        }
     }
+    return state;
+
 }
 
 export default filters;

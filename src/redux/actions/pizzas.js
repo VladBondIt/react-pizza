@@ -1,5 +1,7 @@
 
-// const setPizzas = (items) => ({
-//     type: 'SET_PIZZAS',
-//     payload: items
-// });
+const setPizzas = (items) => ({
+    type: 'SET_PIZZAS',
+    payload: items
+});
+
+export default setPizzas;

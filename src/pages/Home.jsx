@@ -1,7 +1,7 @@
 import React from 'react';
 import { Categories, Sort, PizzaBlock } from '../components';
 
-function Home({ setShowPopup, showPopup, onSelectPopup, pizzas }) {
+function Home({ setShowPopup, showPopup, onSelectPopup }) {
 
     return (
         <div className="container">
@@ -22,7 +22,7 @@ function Home({ setShowPopup, showPopup, onSelectPopup, pizzas }) {
             </div>
 
             <h2 className="content__title">Все пиццы</h2>
-            <PizzaBlock pizzas={pizzas} />
+            <PizzaBlock />
         </div>
     )
 }
