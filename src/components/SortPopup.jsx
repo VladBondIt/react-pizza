@@ -1,3 +1,70 @@
+
+import React, { useState } from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { showPopup } from '../redux/actions/';
+
+export default function SortPopup({ items, changeSortText }) {
+
+    const dispatch = useDispatch();
+
+    const { isShowPopup } = useSelector(({ showPopup }) => {
+        return {
+            isShowPopup: showPopup.isShowPopup
+        }
+    })
+
+    const [activeItem, setActiveItem] = useState(0);
+
+    const onSelectSort = (i) => {
+        setActiveItem(i);
+        // setShowPopup(false);
+    }
+
+    const onKeyPressed = (e) => {
+        if (e.key === 'Escape') {
+            dispatch(showPopup(false));
+        }
+    }
+
+    const lists = items.map((list, i) => {
+        const { name } = list
+        let listClassName = 'sort__list-item';
+        listClassName += activeItem === i ? ' active' : '';
+
+        return (
+            <li
+                onClick={() => {
+                    onSelectSort(i);
+                    changeSortText(name);
+                }}
+                key={Math.random() * 10}
+                className={listClassName}>
+                {name}
+            </li>
+        )
+    })
+
+    return (
+        <div
+            tabIndex='-1'
+            onKeyDown={onKeyPressed}
+            className={isShowPopup === true ? "sort__popup active" : "sort__popup"}>
+            <ul>
+                {lists}
+            </ul>
+        </div>
+    );
+}
+
+
+
+
+
+
+
+
+
 // import React, { Component } from 'react';
 
 // class SortPopup extends Component {
@@ -40,44 +107,3 @@
 // }
 
 // export default SortPopup;
-
-import React, { useState } from 'react'
-
-export default function SortPopup({ items, changeSortText, onKeyPressed, setShowPopup, showPopup }) {
-
-    const [activeItem, setActiveItem] = useState(0);
-
-    const onSelectSort = (i) => {
-        setActiveItem(i);
-        // setShowPopup(false);
-    }
-
-    const lists = items.map((list, i) => {
-        const { name, type } = list
-        let listClassName = 'sort__list-item';
-        listClassName += activeItem === i ? ' active' : '';
-
-        return (
-            <li
-                onClick={() => {
-                    onSelectSort(i);
-                    changeSortText(name);
-                }}
-                key={Math.random() * 10}
-                className={listClassName}>
-                {name}
-            </li>
-        )
-    })
-
-    return (
-        <div
-            tabIndex='-1'
-            onKeyDown={onKeyPressed}
-            className={showPopup === true ? "sort__popup active" : "sort__popup"}>
-            <ul>
-                {lists}
-            </ul>
-        </div>
-    );
-}

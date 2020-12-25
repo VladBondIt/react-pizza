@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 // import PropTypes from 'prop-types';
 
 function PizzaBlock() {
+
     const { items } = useSelector(({ pizzas }) => {
         return {
             items: pizzas.items

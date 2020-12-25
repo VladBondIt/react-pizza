@@ -1,7 +1,7 @@
 import React from 'react';
 import { Categories, Sort, PizzaBlock } from '../components';
 
-function Home({ setShowPopup, showPopup, onSelectPopup }) {
+function Home() {
 
     return (
         <div className="container">
@@ -15,10 +15,7 @@ function Home({ setShowPopup, showPopup, onSelectPopup }) {
                         'Острые',
                         'Закрытые'
                     ]} />
-                <Sort
-                    setShowPopup={setShowPopup}
-                    showPopup={showPopup}
-                    onSelectPopup={onSelectPopup} />
+                <Sort />
             </div>
 
             <h2 className="content__title">Все пиццы</h2>

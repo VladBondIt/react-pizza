@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { Header } from './components';
 import { Home, Cart } from './pages';
 import { useDispatch } from 'react-redux';
-import setPizzas from './redux/actions/pizzas';
+import { setPizzas, showPopup } from './redux/actions/';
 
 function App() {
     const dispatch = useDispatch();
-
-
-
-    const [showPopup, setShowPopup] = useState(false);
-
-    const onSelectPopup = () => {
-        setShowPopup(!showPopup);
-    }
 
     useEffect(() => {
         fetch("http://localhost:3004/pizzas")
@@ -36,7 +28,7 @@ function App() {
         <div
             onClick={(e) => {
                 if (!e.target.matches('.sort__list-item') && !e.target.matches('.sort__name')) {
-                    setShowPopup(false);
+                    dispatch(showPopup(false));
                 }
             }}
             className="outsideBg">
@@ -49,17 +41,7 @@ function App() {
                 className="wrapper">
                 <Header />
                 <div className="content">
-                    <Route
-                        exact
-                        path="/"
-                        render={() => (
-                            <Home
-                                setShowPopup={setShowPopup}
-                                showPopup={showPopup}
-                                onSelectPopup={onSelectPopup}
-                            />
-                        )}
-                    />
+                    <Route exact path="/" component={Home} />
                     <Route exact path="/cart" component={Cart} />
                 </div>
             </div>
