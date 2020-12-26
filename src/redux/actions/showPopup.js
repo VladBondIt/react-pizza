@@ -1,6 +1,6 @@
-const showPopup = (showPopup) => ({
+const showPopup = (boolean) => ({
     type: 'SET_SHOW_POPUP',
-    payload: showPopup
+    payload: boolean
 });
 
 export default showPopup;

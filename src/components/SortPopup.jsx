@@ -43,13 +43,13 @@
 
 import React, { useState } from 'react'
 
-export default function SortPopup({ items, changeSortText, onKeyPressed, showPopup, setShowPopup }) {
+export default function SortPopup({ items, changeSortText, onKeyPressed, isShowPopup, onClosePopup }) {
 
     const [activeItem, setActiveItem] = useState(0);
 
     const onSelectSort = (i) => {
         setActiveItem(i);
-        setShowPopup(false);
+        onClosePopup();
     }
 
     const lists = items.map((list, i) => {
@@ -74,7 +74,7 @@ export default function SortPopup({ items, changeSortText, onKeyPressed, showPop
         <div
             tabIndex='-1'
             onKeyDown={onKeyPressed}
-            className={showPopup === true ? "sort__popup active" : "sort__popup"}>
+            className={isShowPopup === true ? "sort__popup active" : "sort__popup"}>
             <ul>
                 {lists}
             </ul>
