@@ -1,33 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SortPopup from './SortPopup';
-import { useDispatch, useSelector } from 'react-redux';
-import showPopup from '../redux/actions/showPopup';
+// import { useDispatch, useSelector } from 'react-redux';
+// import showPopup from '../redux/actions/showPopup';
 
 
 function Sort() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const [sortText, setSortText] = useState('популярности');
-    // const [showPopup, setShowPopup] = useState(false);
-
-    const { isShowPopup } = useSelector(({ showPopup }) => {
-        return {
-            isShowPopup: showPopup.isShowPopup
-        }
-    })
+    const [showPopup, setShowPopup] = useState(false);
 
     const onSelectPopup = () => {
-        dispatch(showPopup(!isShowPopup));
-    }
-    const onClosePopup = () => {
-        dispatch(showPopup(false));
+        setShowPopup(!showPopup);
     }
 
-    // const onKeyPressed = (e) => {
-    //     if (e.key === 'Escape') {
-    //         setShowPopup(false);
-    //     }
-    // }
+    const onClosePopup = () => {
+        setShowPopup(false);
+    }
+
+    const handleOutsideClick = (e) => {
+        if (!e.target.matches('.sort__list-item') && !e.target.matches('.sort__name')) {
+            onClosePopup();
+        }
+
+    };
+
+    useEffect(() => {
+        document.querySelector('.outsideBg').addEventListener('click', handleOutsideClick);
+    }, []);
+
+
+    const onKeyPressed = (e) => {
+        if (e.key === 'Escape') {
+            setShowPopup(false);
+        }
+    }
 
     const changeSortText = (listItem) => {
         setSortText(listItem);
@@ -51,15 +58,15 @@ function Sort() {
                 <b>Сортировка по:</b>
                 <span
                     tabIndex="-1"
-                    // onKeyDown={onKeyPressed}
+                    onKeyDown={onKeyPressed}
                     className="sort__name"
                     onClick={() => onSelectPopup()}>{sortText}</span>
             </div>
             <SortPopup
-                isShowPopup={isShowPopup}
-                // onKeyPressed={onKeyPressed}
+                showPopup={showPopup}
+                onKeyPressed={onKeyPressed}
                 changeSortText={changeSortText}
-                onClosePopup={onClosePopup}
+                // onClosePopup={onClosePopup}
                 items={[
                     { name: 'популярности', type: 'popular' },
                     { name: 'цене', type: 'price' },
