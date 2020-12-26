@@ -1,27 +1,13 @@
 import React, { useState } from 'react';
-import SortPopup from './SortPopup';
-import { useSelector, useDispatch } from 'react-redux';
-import { showPopup } from '../redux/actions/';
+import SortPopup from './SortPopup'
 
-function Sort() {
+function Sort({ showPopup, onSelectPopup, setShowPopup }) {
 
     const [sortText, setSortText] = useState('популярности');
 
-    const dispatch = useDispatch();
-    const { isShowPopup } = useSelector(({ showPopup }) => {
-        return {
-            isShowPopup: showPopup.isShowPopup
-        }
-    })
-
-    const onShowPopup = () => {
-        dispatch(showPopup(!isShowPopup))
-    }
-
-
     const onKeyPressed = (e) => {
         if (e.key === 'Escape') {
-            dispatch(showPopup(false));
+            setShowPopup(false);
         }
     }
 
@@ -49,10 +35,13 @@ function Sort() {
                     tabIndex="-1"
                     onKeyDown={onKeyPressed}
                     className="sort__name"
-                    onClick={onShowPopup}>{sortText}</span>
+                    onClick={() => onSelectPopup()}>{sortText}</span>
             </div>
             <SortPopup
+                setShowPopup={setShowPopup}
+                onKeyPressed={onKeyPressed}
                 changeSortText={changeSortText}
+                showPopup={showPopup}
                 items={[
                     { name: 'популярности', type: 'popular' },
                     { name: 'цене', type: 'price' },

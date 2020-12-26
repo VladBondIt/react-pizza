@@ -1,12 +1,12 @@
 const initialState = {
-    isShowPopup: false
+    showPopup: false
 
 }
 const showPopup = (state = initialState, action) => {
     if (action.type === 'SET_SHOW_POPUP') {
         return {
             ...state,
-            isShowPopup: action.payload
+            showPopup: action.payload
         }
     }
     return state;
