@@ -1,18 +1,19 @@
-@import "fonts";
-@import "variables";
-@import "libs/normalize";
+@import 'fonts';
+@import 'variables';
+@import 'libs/normalize';
 
-@import "components/all";
+@import 'components/all';
 
-.outsideBg {
+body {
   background-color: $background;
   padding: 50px 0;
 }
+
 .wrapper {
   width: calc(100vw - 100px);
   height: 100%;
   background-color: #fff;
-  margin: 0px auto;
+  margin: 0 auto;
   border-radius: 10px;
   max-width: 1400px;
 }
@@ -27,7 +28,7 @@
   &__items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 
   &__top {
@@ -308,17 +309,5 @@
       font-weight: 600;
       font-size: 18px;
     }
-  }
-}
-
-.ruble-svg {
-  width: 22px;
-  height: 22px;
-  fill: $black;
-  padding-top: 5px;
-  &--cart {
-    fill: white;
-    width: 18px;
-    height: 18px;
   }
 }

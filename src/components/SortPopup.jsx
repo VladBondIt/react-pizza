@@ -1,109 +1,65 @@
+import React from 'react';
 
-import React, { useState } from 'react';
+function SortPopup({ items }) {
+  const [visiblePopup, setVisiblePopup] = React.useState(false);
+  const [activeItem, setActiveItem] = React.useState(0);
+  const sortRef = React.useRef();
+  const activeLabel = items[activeItem].name;
 
-import { useSelector, useDispatch } from 'react-redux';
-import { showPopup } from '../redux/actions/';
+  const toggleVisiblePopup = () => {
+    setVisiblePopup(!visiblePopup);
+  };
 
-export default function SortPopup({ items, changeSortText }) {
-
-    const dispatch = useDispatch();
-
-    const { isShowPopup } = useSelector(({ showPopup }) => {
-        return {
-            isShowPopup: showPopup.isShowPopup
-        }
-    })
-
-    const [activeItem, setActiveItem] = useState(0);
-
-    const onSelectSort = (i) => {
-        setActiveItem(i);
-        // setShowPopup(false);
+  const handleOutsideClick = (e) => {
+    if (!e.path.includes(sortRef.current)) {
+      setVisiblePopup(false);
     }
+  };
 
-    const onKeyPressed = (e) => {
-        if (e.key === 'Escape') {
-            dispatch(showPopup(false));
-        }
-    }
+  const onSelectItem = (index) => {
+    setActiveItem(index);
+    setVisiblePopup(false);
+  };
 
-    const lists = items.map((list, i) => {
-        const { name } = list
-        let listClassName = 'sort__list-item';
-        listClassName += activeItem === i ? ' active' : '';
+  React.useEffect(() => {
+    document.body.addEventListener('click', handleOutsideClick);
+  }, []);
 
-        return (
-            <li
-                onClick={() => {
-                    onSelectSort(i);
-                    changeSortText(name);
-                }}
-                key={Math.random() * 10}
-                className={listClassName}>
-                {name}
-            </li>
-        )
-    })
-
-    return (
-        <div
-            tabIndex='-1'
-            onKeyDown={onKeyPressed}
-            className={isShowPopup === true ? "sort__popup active" : "sort__popup"}>
-            <ul>
-                {lists}
-            </ul>
+  return (
+    <div ref={sortRef} className="sort">
+      <div className="sort__label">
+        <svg
+          className={visiblePopup ? 'rotated' : ''}
+          width="10"
+          height="6"
+          viewBox="0 0 10 6"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M10 5C10 5.16927 9.93815 5.31576 9.81445 5.43945C9.69075 5.56315 9.54427 5.625 9.375 5.625H0.625C0.455729 5.625 0.309245 5.56315 0.185547 5.43945C0.061849 5.31576 0 5.16927 0 5C0 4.83073 0.061849 4.68424 0.185547 4.56055L4.56055 0.185547C4.68424 0.061849 4.83073 0 5 0C5.16927 0 5.31576 0.061849 5.43945 0.185547L9.81445 4.56055C9.93815 4.68424 10 4.83073 10 5Z"
+            fill="#2C2C2C"
+          />
+        </svg>
+        <b>Сортировка по:</b>
+        <span onClick={toggleVisiblePopup}>{activeLabel}</span>
+      </div>
+      {visiblePopup && (
+        <div className="sort__popup">
+          <ul>
+            {items &&
+              items.map((obj, index) => (
+                <li
+                  onClick={() => onSelectItem(index)}
+                  className={activeItem === index ? 'active' : ''}
+                  key={`${obj.type}_${index}`}>
+                  {obj.name}
+                </li>
+              ))}
+          </ul>
         </div>
-    );
+      )}
+    </div>
+  );
 }
 
-
-
-
-
-
-
-
-
-// import React, { Component } from 'react';
-
-// class SortPopup extends Component {
-//     state = {
-//         items: [
-//             'популярности',
-//             'цене',
-//             'алфавиту',
-//         ],
-//         activeItem: 0
-//     }
-
-//     onSelectSort = (inx) => {
-//         this.setState({
-//             activeItem: inx,
-//         })
-//     }
-
-
-//     render() {
-//         const { items, activeItem } = this.state;
-
-//         const lists = items.map((list, i) => {
-//             const listClassName = activeItem === i ? 'active' : null;
-//             return (
-//                 <li
-//                     onClick={() => this.onSelectSort(i)}
-//                     key={Math.random() * 10}
-//                     className={listClassName}>{list}</li>
-//             )
-//         })
-//         return (
-//             <div className="sort__popup">
-//                 <ul>
-//                     {lists}
-//                 </ul>
-//             </div>
-//         );
-//     }
-// }
-
-// export default SortPopup;
+export default SortPopup;
