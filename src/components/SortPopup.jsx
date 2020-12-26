@@ -43,17 +43,17 @@
 
 import React, { useState } from 'react'
 
-export default function SortPopup({ items, changeSortText, onKeyPressed, setShowPopup, showPopup }) {
+export default function SortPopup({ items, changeSortText, onKeyPressed, showPopup, setShowPopup }) {
 
     const [activeItem, setActiveItem] = useState(0);
 
     const onSelectSort = (i) => {
         setActiveItem(i);
-        // setShowPopup(false);
+        setShowPopup(false);
     }
 
     const lists = items.map((list, i) => {
-        const { name, type } = list
+        const { name } = list
         let listClassName = 'sort__list-item';
         listClassName += activeItem === i ? ' active' : '';
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { Header } from './components';
 import { Home, Cart } from './pages';
@@ -7,14 +7,6 @@ import setPizzas from './redux/actions/pizzas';
 
 function App() {
     const dispatch = useDispatch();
-
-
-
-    const [showPopup, setShowPopup] = useState(false);
-
-    const onSelectPopup = () => {
-        setShowPopup(!showPopup);
-    }
 
     useEffect(() => {
         fetch("http://localhost:3004/pizzas")
@@ -34,11 +26,6 @@ function App() {
 
     return (
         <div
-            onClick={(e) => {
-                if (!e.target.matches('.sort__list-item') && !e.target.matches('.sort__name')) {
-                    setShowPopup(false);
-                }
-            }}
             className="outsideBg">
             <svg display="none">
                 <symbol id="ruble" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -49,17 +36,7 @@ function App() {
                 className="wrapper">
                 <Header />
                 <div className="content">
-                    <Route
-                        exact
-                        path="/"
-                        render={() => (
-                            <Home
-                                setShowPopup={setShowPopup}
-                                showPopup={showPopup}
-                                onSelectPopup={onSelectPopup}
-                            />
-                        )}
-                    />
+                    <Route exact path="/" component={Home} />
                     <Route exact path="/cart" component={Cart} />
                 </div>
             </div>

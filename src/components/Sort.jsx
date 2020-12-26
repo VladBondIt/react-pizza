@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import SortPopup from './SortPopup'
 
-function Sort({ showPopup, onSelectPopup, setShowPopup }) {
+function Sort() {
 
     const [sortText, setSortText] = useState('популярности');
+    const [showPopup, setShowPopup] = useState(false);
 
-    const onKeyPressed = (e) => {
-        if (e.key === 'Escape') {
-            setShowPopup(false);
-        }
+    const onSelectPopup = () => {
+        setShowPopup(!showPopup);
     }
+
+    // const onKeyPressed = (e) => {
+    //     if (e.key === 'Escape') {
+    //         setShowPopup(false);
+    //     }
+    // }
 
     const changeSortText = (listItem) => {
         setSortText(listItem);
@@ -33,13 +38,13 @@ function Sort({ showPopup, onSelectPopup, setShowPopup }) {
                 <b>Сортировка по:</b>
                 <span
                     tabIndex="-1"
-                    onKeyDown={onKeyPressed}
+                    // onKeyDown={onKeyPressed}
                     className="sort__name"
                     onClick={() => onSelectPopup()}>{sortText}</span>
             </div>
             <SortPopup
                 setShowPopup={setShowPopup}
-                onKeyPressed={onKeyPressed}
+                // onKeyPressed={onKeyPressed}
                 changeSortText={changeSortText}
                 showPopup={showPopup}
                 items={[
