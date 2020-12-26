@@ -21,18 +21,16 @@ function App() {
                 dispatch(setPizzas(data));
             })
 
-    }, [])
-
-    const onShowPopup = (e) => {
-        if (!e.target.matches('.sort__list-item') && !e.target.matches('.sort__name')) {
-            dispatch(showPopup(false));
-        }
-    }
+    }, [dispatch])
 
 
     return (
         <div
-            onClick={onShowPopup}
+            onClick={(e) => {
+                if (!e.target.matches('.sort__list-item') && !e.target.matches('.sort__name')) {
+                    dispatch(showPopup(false));
+                }
+            }}
             className="outsideBg">
             <svg display="none">
                 <symbol id="ruble" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
