@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { Categories, Sort, PizzaBlock } from '../components';
 
 import { useDispatch } from 'react-redux';
@@ -13,7 +13,7 @@ function Home() {
     const onSetCategory = useCallback((i) => {
         console.log(i);
         dispatch(setCategory(i))
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="container">

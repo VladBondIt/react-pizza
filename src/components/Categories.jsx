@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 
-export default function Categories({ items, onSetCategory }) {
+const Categories = memo(function Categories({ items, onSetCategory }) {
     const [activeItem, setActiveItem] = useState(0);
 
     const onSelectItem = index => {
         setActiveItem(index)
         onSetCategory(index)
     };
+
+    // console.log('RENDER CATEGORY');
 
 
     const elem = items.map((name, i) => {
@@ -25,7 +27,9 @@ export default function Categories({ items, onSetCategory }) {
             </ul>
         </div>
     )
-}
+})
+
+export default Categories;
 
 // import React, { Component } from 'react';
 

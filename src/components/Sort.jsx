@@ -6,6 +6,11 @@ import SortPopup from './SortPopup';
 
 function Sort() {
     // const dispatch = useDispatch();
+    const sortItems = [
+        { name: 'популярности', type: 'popular' },
+        { name: 'цене', type: 'price' },
+        { name: 'алфавиту', type: 'alphabet' },
+    ];
 
     const [sortText, setSortText] = useState('популярности');
     const [showPopup, setShowPopup] = useState(false);
@@ -65,11 +70,7 @@ function Sort() {
                 onKeyPressed={onKeyPressed}
                 changeSortText={changeSortText}
                 // onClosePopup={onClosePopup}
-                items={[
-                    { name: 'популярности', type: 'popular' },
-                    { name: 'цене', type: 'price' },
-                    { name: 'алфавиту', type: 'alphabet' },
-                ]} />
+                items={sortItems} />
         </div>
     )
 }

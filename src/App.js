@@ -8,6 +8,21 @@ import setPizzas from './redux/actions/pizzas';
 function App() {
     const dispatch = useDispatch();
 
+    // ТЕСТ ДЛЯ РЕРЕНДЕРА
+    // window.test = () => {
+    //     fetch("http://localhost:3004/pizzas")
+    //         .then((resp) => {
+    //             if (!resp.ok) {
+    //                 throw new Error(`Could not fetch ${"http://localhost:3004/pizzas"}` +
+    //                     `, received ${resp.status}`);
+    //             }
+    //             return resp.json();
+    //         })
+    //         .then((data) => {
+    //             dispatch(setPizzas(data));
+    //         })
+    // }
+
     useEffect(() => {
         fetch("http://localhost:3004/pizzas")
             .then((resp) => {
