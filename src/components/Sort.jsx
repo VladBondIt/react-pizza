@@ -18,15 +18,13 @@ function Sort() {
         setShowPopup(false);
     }
 
-    const handleOutsideClick = (e) => {
-        if (!e.target.matches('.sort__list-item') && !e.target.matches('.sort__name')) {
-            onClosePopup();
-        }
-
-    };
 
     useEffect(() => {
-        document.querySelector('.outsideBg').addEventListener('click', handleOutsideClick);
+        document.querySelector('.outsideBg').addEventListener('click', (e) => {
+            if (!e.target.matches('.sort__list-item') && !e.target.matches('.sort__name')) {
+                onClosePopup();
+            }
+        });
     }, []);
 
 

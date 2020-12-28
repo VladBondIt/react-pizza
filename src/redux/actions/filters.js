@@ -7,3 +7,7 @@ const setCategory = (index) => ({
     type: 'SET_CATEGORY',
     payload: index
 });
+export {
+    setSortBy,
+    setCategory
+}

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
-export default function Categories({ items }) {
+export default function Categories({ items, onSetCategory }) {
     const [activeItem, setActiveItem] = useState(0);
 
     const onSelectItem = index => {
         setActiveItem(index)
+        onSetCategory(index)
     };
 
 
