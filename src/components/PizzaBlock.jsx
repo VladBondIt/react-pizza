@@ -1,12 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TypeLists from './TypeLists';
 import SizeLists from './SizeLists';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPizzas } from '../redux/actions/pizzas';
+import Loader from './Loader';
 // import PropTypes from 'prop-types';
 
 function PizzaBlock() {
 
-    const items = useSelector(({ pizzas }) => pizzas.items);
+    const { items, isLoaded } = useSelector(({ pizzas }) => {
+        return {
+            items: pizzas.items,
+            isLoaded: pizzas.isLoaded
+        }
+    });
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        // if (!items.length) {
+        dispatch(fetchPizzas());
+        // }
+    }, [dispatch])
+
+    window.test = () => {
+        console.log(isLoaded);
+        console.log(items);
+
+    }
+
+
 
     const pizzaItems = items.map((item) => {
 
@@ -56,7 +78,7 @@ function PizzaBlock() {
 
     return (
         <div className="content__items">
-            {pizzaItems}
+            {isLoaded ? pizzaItems : Array(8).fill(<Loader />).map(x => <Loader key={(Math.random() * 10)} />)}
         </div>
     )
 }
