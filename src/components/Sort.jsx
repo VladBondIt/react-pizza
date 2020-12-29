@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import SortPopup from './SortPopup';
+
+import { useSelector } from 'react-redux';
 // import showPopup from '../redux/actions/showPopup';
 
 
 function Sort() {
+    const { sortBy } = useSelector(({ filters }) => {
+        return {
+            sortBy: filters.sortBy,
+        }
+    });
+
     const sortItems = [
         { name: 'популярности', type: 'popular' },
         { name: 'цене', type: 'price' },
@@ -44,7 +52,7 @@ function Sort() {
     return (
         <div className="sort">
             <div className="sort__label">
-                <svg
+                <svg className={sortBy ? '' : 'active'}
                     width="10"
                     height="6"
                     viewBox="0 0 10 6"

@@ -8,24 +8,20 @@ import Loader from './Loader';
 
 function PizzaBlock() {
 
-    const { items, isLoaded, category, sortBy } = useSelector(({ pizzas, filters }) => {
+    const { items, isLoaded, category } = useSelector(({ pizzas, filters }) => {
         return {
             items: pizzas.items,
             isLoaded: pizzas.isLoaded,
             category: filters.category,
-            sortBy: filters.sortBy,
         }
     });
 
 
     const dispatch = useDispatch();
     useEffect(() => {
-        // if (!items.length) {
-        dispatch(fetchPizzas(sortBy, category));
-        // }
-    }, [dispatch, category, sortBy])
+        dispatch(fetchPizzas(category));
+    }, [dispatch, category])
 
-    console.log(category, sortBy);
 
     const pizzaItems = items.map((item) => {
 
