@@ -1,4 +1,11 @@
+const setLoaded = (payload) => ({
+    type: 'SET_LOADED',
+    payload
+})
+
+
 const fetchPizzas = () => dispatch => {
+    dispatch(setLoaded(false))
     // Можно передать диспатч в качестве агрумента
     fetch("http://localhost:3004/pizzas")
         .then((resp) => {

@@ -1,14 +1,25 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { setCategory } from '../redux/actions/filters';
 
-const Categories = memo(function Categories({ items, onSetCategory }) {
+const Categories = memo(function Categories({ items }) {
     const [activeItem, setActiveItem] = useState(0);
+
+    const dispatch = useDispatch();
+
+    const onSetCategory = useCallback((i) => {
+        dispatch(setCategory(i))
+    }, [dispatch]);
 
     const onSelectItem = index => {
         setActiveItem(index)
         onSetCategory(index)
     };
 
+
     // console.log('RENDER CATEGORY');
+
+
 
 
     const elem = items.map((name, i) => {

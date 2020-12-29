@@ -1,26 +1,14 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Categories, Sort, PizzaBlock } from '../components';
-
-import { useDispatch } from 'react-redux';
-import { setCategory } from '../redux/actions/filters';
 
 const categoryesName = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
 
 function Home() {
 
-    const dispatch = useDispatch();
-
-    const onSetCategory = useCallback((i) => {
-        console.log(i);
-        dispatch(setCategory(i))
-    }, [dispatch]);
-
     return (
         <div className="container">
             <div className="content__top">
-                <Categories
-                    items={categoryesName}
-                    onSetCategory={onSetCategory} />
+                <Categories items={categoryesName} />
                 <Sort />
             </div>
 
