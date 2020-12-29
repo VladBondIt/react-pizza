@@ -20,8 +20,6 @@ function App() {
     //         })
     // }
 
-
-
     return (
         <div className="outsideBg">
             <svg display="none">

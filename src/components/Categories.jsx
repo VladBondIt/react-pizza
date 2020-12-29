@@ -16,11 +16,7 @@ const Categories = memo(function Categories({ items }) {
         onSetCategory(index)
     };
 
-
     // console.log('RENDER CATEGORY');
-
-
-
 
     const elem = items.map((name, i) => {
         const listClassName = activeItem === i ? 'active' : 0;

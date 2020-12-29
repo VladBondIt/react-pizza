@@ -3,18 +3,18 @@ import ContentLoader from "react-content-loader";
 
 const MyLoader = () => (
     <ContentLoader
-        speed={1}
+        className="pizza-block"
+        speed={2}
         width={280}
-        height={455}
-        viewBox="0 0 280 455"
+        height={460}
+        viewBox="0 0 280 460"
         backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-    >
-        <circle cx="125" cy="125" r="125" />
-        <rect x="0" y="260" rx="6" ry="6" width="280" height="20" />
-        <rect x="0" y="305" rx="6" ry="6" width="280" height="85" />
-        <rect x="0" y="400" rx="6" ry="6" width="75" height="44" />
-        <rect x="128" y="400" rx="30" ry="30" width="151" height="44" />
+        foregroundColor="#ecebeb">
+        <circle cx="132" cy="142" r="115" />
+        <rect x="0" y="273" rx="6" ry="6" width="280" height="26" />
+        <rect x="0" y="310" rx="6" ry="6" width="280" height="84" />
+        <rect x="0" y="418" rx="6" ry="6" width="91" height="31" />
+        <rect x="137" y="408" rx="25" ry="25" width="140" height="46" />
     </ContentLoader>
 )
 
