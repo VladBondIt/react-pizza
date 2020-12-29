@@ -1,5 +1,3 @@
-
-
 import React, { memo, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSortBy } from '../redux/actions/filters';
