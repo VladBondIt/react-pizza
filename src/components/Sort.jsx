@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import SortPopup from './SortPopup';
-// import { useDispatch, useSelector } from 'react-redux';
 // import showPopup from '../redux/actions/showPopup';
 
 
 function Sort() {
-    // const dispatch = useDispatch();
     const sortItems = [
         { name: 'популярности', type: 'popular' },
         { name: 'цене', type: 'price' },

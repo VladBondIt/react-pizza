@@ -1,25 +1,34 @@
 
 
-import React, { memo, useState } from 'react'
+import React, { memo, useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { setSortBy } from '../redux/actions/filters';
 
 const SortPopup = memo(function SortPopup({ items, changeSortText, onKeyPressed, showPopup }) {
 
     const [activeItem, setActiveItem] = useState(0);
 
-    const onSelectSort = (i) => {
+    const dispatch = useDispatch();
+
+    const onSetSortType = useCallback((i) => {
+        dispatch(setSortBy(i))
+    }, [dispatch]);
+
+    const onSelectSort = (i, type) => {
         setActiveItem(i);
+        onSetSortType(type);
         // onClosePopup();
     }
 
     const lists = items.map((list, i) => {
-        const { name } = list
+        const { name, type } = list
         let listClassName = 'sort__list-item';
         listClassName += activeItem === i ? ' active' : '';
 
         return (
             <li
                 onClick={() => {
-                    onSelectSort(i);
+                    onSelectSort(i, type);
                     changeSortText(name);
                 }}
                 key={Math.random() * 10}

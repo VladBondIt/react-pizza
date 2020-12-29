@@ -4,13 +4,18 @@ const setLoaded = (payload) => ({
 })
 
 
-const fetchPizzas = () => dispatch => {
+const fetchPizzas = (sortBy, category) => dispatch => {
+    const apiUrl = 'http://localhost:3004/pizzas';
+    const categoryUrl = `?category=${category - 1}`;
+    const sortUrl = `&_sort=${sortBy}`;
+    const sortOrder = '&_order=desc';
+
     dispatch(setLoaded(false))
     // Можно передать диспатч в качестве агрумента
-    fetch("http://localhost:3004/pizzas")
+    fetch(`${apiUrl}${category === 0 ? '?' : categoryUrl}${sortUrl}${sortOrder}`)
         .then((resp) => {
             if (!resp.ok) {
-                throw new Error(`Could not fetch ${"http://localhost:3004/pizzas"}` +
+                throw new Error(`Could not fetch ${apiUrl}` +
                     `, received ${resp.status}`);
             }
             return resp.json();

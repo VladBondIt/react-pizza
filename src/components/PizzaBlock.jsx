@@ -21,9 +21,9 @@ function PizzaBlock() {
     const dispatch = useDispatch();
     useEffect(() => {
         // if (!items.length) {
-        dispatch(fetchPizzas());
+        dispatch(fetchPizzas(sortBy, category));
         // }
-    }, [dispatch, category])
+    }, [dispatch, category, sortBy])
 
     console.log(category, sortBy);
 
