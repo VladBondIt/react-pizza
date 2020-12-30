@@ -3,18 +3,20 @@ import TypeLists from './TypeLists';
 import SizeLists from './SizeLists';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPizzas } from '../redux/actions/pizzas';
+import { addPizzaToCart } from '../redux/actions/cart';
 import Loader from './Loader';
 // import PropTypes from 'prop-types';
 
 function PizzaBlock() {
 
-    const { items, isLoaded, category, sortBy, orderSort } = useSelector(({ pizzas, filters }) => {
+    const { items, isLoaded, category, sortBy, orderSort, itemsCart } = useSelector(({ pizzas, filters, cart }) => {
         return {
             items: pizzas.items,
             isLoaded: pizzas.isLoaded,
             category: filters.category,
             sortBy: filters.sortBy,
             orderSort: filters.orderSort,
+            itemsCart: cart.items,
         }
     });
 
@@ -23,6 +25,12 @@ function PizzaBlock() {
     useEffect(() => {
         dispatch(fetchPizzas(category, sortBy, orderSort));
     }, [dispatch, category, sortBy, orderSort])
+
+    const onAddPizzaToCart = ({ ...obj }) => {
+        dispatch(addPizzaToCart(obj))
+    }
+
+    console.log(itemsCart);
 
 
     const pizzaItems = items.map((item) => {
@@ -50,7 +58,9 @@ function PizzaBlock() {
                 </div>
                 <div className="pizza-block__bottom">
                     <div className="pizza-block__price">{price}<svg className="ruble-svg"><use xlinkHref="#ruble" /></svg>  </div>
-                    <div className="button button--outline button--add">
+                    <button
+                        onClick={() => onAddPizzaToCart({ id, name, imageUrl, price })}
+                        className="button button--outline button--add">
                         <svg
                             width="12"
                             height="12"
@@ -65,11 +75,12 @@ function PizzaBlock() {
                         </svg>
                         <span>Добавить</span>
                         <i>2</i>
-                    </div>
+                    </button>
                 </div>
             </div >
         );
     });
+
     const className = "content__items";
 
     return (

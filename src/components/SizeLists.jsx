@@ -16,7 +16,9 @@ function SizeLists({ sizes }) {
         return (
             <li
                 key={i + (Math.random() * 10)}
-                onClick={() => onSelectSize(i)}
+                onClick={() => {
+                    onSelectSize(i)
+                }}
                 className={SizeClassName} >{size} см</li >
         )
     });

@@ -16,7 +16,9 @@ function TypeLists({ types }) {
         return (
             <li
                 key={i + (Math.random() * 10)}
-                onClick={() => onSelectType(i)}
+                onClick={() => {
+                    onSelectType(i)
+                }}
                 className={TypeClassName} > {type}</li >
         )
     });

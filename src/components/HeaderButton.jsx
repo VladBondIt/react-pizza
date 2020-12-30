@@ -1,12 +1,20 @@
 import React from "react";
 
+import { useSelector } from 'react-redux';
 
 
 function Button() {
+
+    const { totalPrice, totalCount } = useSelector(({ cart }) => {
+        return {
+            totalPrice: cart.totalPrice,
+            totalCount: cart.totalCount,
+        }
+    });
     // const buttonClassName = outline === 'false' ? 'button button--outline' : 'button';
     return (
         <div className="button button--cart">
-            <span>520 <svg className="ruble-svg--cart"><use xlinkHref="#ruble" /></svg></span>
+            <span>{totalPrice}<svg className="ruble-svg--cart"><use xlinkHref="#ruble" /></svg></span>
             <div className="button__delimiter"></div>
             <svg
                 width="18"
@@ -37,7 +45,7 @@ function Button() {
                     strokeLinejoin="round"
                 />
             </svg>
-            <span>3</span>
+            <span>{totalCount}</span>
         </div>
     );
 }
