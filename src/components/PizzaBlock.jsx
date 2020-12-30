@@ -50,7 +50,7 @@ function PizzaBlock() {
                 <h4 className="pizza-block__title">{name}</h4>
                 <div className="pizza-block__selector">
                     <ul>
-                        <TypeLists types={types} />
+                        <TypeLists onAddPizzaToCart={onAddPizzaToCart} types={types} />
                     </ul>
                     <ul>
                         <SizeLists sizes={sizes} />
