@@ -6,16 +6,16 @@ import { useSelector } from 'react-redux';
 
 
 function Sort() {
-    const { sortBy } = useSelector(({ filters }) => {
+    const { orderSort } = useSelector(({ filters }) => {
         return {
-            sortBy: filters.sortBy,
+            orderSort: filters.orderSort,
         }
     });
 
     const sortItems = [
-        { name: 'популярности', type: 'popular' },
+        { name: 'популярности', type: 'rating' },
         { name: 'цене', type: 'price' },
-        { name: 'алфавиту', type: 'alphabet' },
+        { name: 'алфавиту', type: 'name' },
     ];
 
     const [sortText, setSortText] = useState('популярности');
@@ -52,7 +52,8 @@ function Sort() {
     return (
         <div className="sort">
             <div className="sort__label">
-                <svg className={sortBy ? '' : 'active'}
+                <svg
+                    className={orderSort === 'desc' ? '' : 'active'}
                     width="10"
                     height="6"
                     viewBox="0 0 10 6"

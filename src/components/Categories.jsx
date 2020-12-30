@@ -8,12 +8,12 @@ const Categories = memo(function Categories({ items }) {
     const dispatch = useDispatch();
 
     const onSetCategory = useCallback((i) => {
-        dispatch(setCategory(i))
+        dispatch(setCategory(i));
     }, [dispatch]);
 
     const onSelectItem = index => {
-        setActiveItem(index)
-        onSetCategory(index)
+        setActiveItem(index);
+        onSetCategory(index);
     };
 
     // console.log('RENDER CATEGORY');

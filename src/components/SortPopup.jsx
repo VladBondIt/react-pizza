@@ -1,13 +1,12 @@
 import React, { memo, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSortBy } from '../redux/actions/filters';
+import { setSortBy, setOrderSort, setSortSelectList } from '../redux/actions/filters';
 
 const SortPopup = memo(function SortPopup({ items, changeSortText, onKeyPressed, showPopup }) {
 
-    const { pizzaItems, sortBy } = useSelector(({ pizzas, filters }) => {
+    const { sortSelect } = useSelector(({ filters }) => {
         return {
-            pizzaItems: pizzas.items,
-            sortBy: filters.sortBy,
+            sortSelect: filters.sortSelect,
         }
     });
 
@@ -15,57 +14,27 @@ const SortPopup = memo(function SortPopup({ items, changeSortText, onKeyPressed,
 
     const dispatch = useDispatch();
 
-    const onSetSortType = useCallback((x) => {
-        dispatch(setSortBy(x))
+    const onSetSortType = useCallback((type) => {
+        dispatch(setSortBy(type))
+    }, [dispatch]);
+
+    const onSetOrderSort = useCallback((order) => {
+        dispatch(setOrderSort(order))
+    }, [dispatch]);
+
+    const onSetSortSelectList = useCallback((boolean) => {
+        dispatch(setSortSelectList(boolean))
     }, [dispatch]);
 
     const onSelectSort = (i, type) => {
         setActiveItem(i);
-        onSetSortType(!sortBy);
-        if (sortBy === true) {
-            switch (type) {
-                case 'popular':
-                    pizzaItems.sort((a, b) => {
-                        return a.rating - b.rating;
-                    })
-                    pizzaItems.forEach((x) => { console.log(x.rating) })
-                    break;
-                case 'price':
-                    pizzaItems.sort((a, b) => {
-                        return a.price - b.price;
-                    })
-                    break;
-                case 'alphabet':
-                    pizzaItems.sort((a, b) => {
-                        return a.name.localeCompare(b.name);
-                    })
-                    break;
-                default:
-                    break;
-            }
+        onSetSortType(type);
+        onSetSortSelectList(!sortSelect);
+        if (sortSelect) {
+            onSetOrderSort('asc');
         } else {
-            switch (type) {
-                case 'popular':
-                    pizzaItems.sort((a, b) => {
-                        return b.rating - a.rating;
-                    })
-                    pizzaItems.forEach((x) => { console.log(x.rating) })
-                    break;
-                case 'price':
-                    pizzaItems.sort((a, b) => {
-                        return b.price - a.price;
-                    })
-                    break;
-                case 'alphabet':
-                    pizzaItems.sort((a, b) => {
-                        return b.name.localeCompare(a.name);
-                    })
-                    break;
-                default:
-                    break;
-            }
+            onSetOrderSort('desc');
         }
-
 
         // onClosePopup();
     }

@@ -1,7 +1,8 @@
 const initialState = {
     category: 0,
-    sortBy: false,
-
+    sortBy: 'rating',
+    orderSort: 'asc',
+    sortSelect: false
 }
 const filters = (state = initialState, action) => {
     switch (action.type) {
@@ -14,6 +15,16 @@ const filters = (state = initialState, action) => {
             return {
                 ...state,
                 category: action.payload
+            }
+        case 'SET_ORDER_SORT':
+            return {
+                ...state,
+                orderSort: action.payload
+            }
+        case 'SET_SELECT_LIST':
+            return {
+                ...state,
+                sortSelect: action.payload
             }
         default:
             return state;
