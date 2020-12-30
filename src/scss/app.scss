@@ -28,6 +28,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    &.flex-start {
+      justify-content: flex-start;
+    }
   }
 
   &__top {

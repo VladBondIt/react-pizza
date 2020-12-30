@@ -26,13 +26,14 @@ function PizzaBlock() {
 
 
     const pizzaItems = items.map((item) => {
-
         const { imageUrl, name, types, price, sizes, id } = item;
+
+        const className = "pizza-block";
 
         return (
             <div
                 key={id + (Math.random() * 10)}
-                className="pizza-block">
+                className={items.length < 4 ? className + ' mr' : className + ''}>
                 <img
                     className="pizza-block__image"
                     src={imageUrl}
@@ -66,13 +67,14 @@ function PizzaBlock() {
                         <i>2</i>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     });
+    const className = "content__items";
 
     return (
-        <div className="content__items">
-            {isLoaded ? pizzaItems : Array(8).fill(<Loader />).map(x => <Loader key={(Math.random() * 10)} />)}
+        <div className={items.length < 4 ? className + ' flex-start' : className + ''}>
+            {isLoaded ? pizzaItems : Array(4).fill(<Loader />).map(x => <Loader key={(Math.random() * 10)} />)}
         </div>
     )
 }
