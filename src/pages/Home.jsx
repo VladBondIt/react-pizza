@@ -41,11 +41,10 @@ function Home() {
 
             <h2 className="content__title">Все пиццы</h2>
             <div className={items.length < 4 ? className + ' flex-start' : className + ''}>
-                {items.map((item) => isLoaded ?
-                    <PizzaBlock
+                {items.map((item) => isLoaded
+                    ? <PizzaBlock
                         key={(Math.random() * 10)}
-                        {...item}
-                    />
+                        {...item} />
                     : Array(4).fill(<Loader />).map(x => <Loader key={(Math.random() * 10)} />)
                 )}
             </div>
