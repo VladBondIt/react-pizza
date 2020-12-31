@@ -7,14 +7,14 @@ import { useSelector, useDispatch } from 'react-redux';
 const categoryesName = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
 
 function Home() {
-    const { items, isLoaded, category, sortBy, orderSort, itemsCart } = useSelector(({ pizzas, filters, cart }) => {
+    const { items, isLoaded, category, sortBy, orderSort, cartItems } = useSelector(({ pizzas, filters, cart }) => {
         return {
             items: pizzas.items,
             isLoaded: pizzas.isLoaded,
             category: filters.category,
             sortBy: filters.sortBy,
             orderSort: filters.orderSort,
-            itemsCart: cart.items,
+            cartItems: cart.items,
         }
     });
 
@@ -23,11 +23,11 @@ function Home() {
 
     useEffect(() => {
         dispatch(fetchPizzas(category, sortBy, orderSort));
-    }, [dispatch, category, sortBy, orderSort])
+    }, [category, sortBy, orderSort])
 
 
 
-    console.log(itemsCart);
+    console.log(cartItems);
 
 
     const className = "content__items";
@@ -43,6 +43,7 @@ function Home() {
             <div className={items.length < 4 ? className + ' flex-start' : className + ''}>
                 {items.map((item) => isLoaded
                     ? <PizzaBlock
+                        addedPizzas={cartItems[item.id] ? cartItems[item.id].length : 0}
                         key={(Math.random() * 10)}
                         {...item} />
                     : Array(4).fill(<Loader />).map(x => <Loader key={(Math.random() * 10)} />)

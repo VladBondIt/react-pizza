@@ -3,14 +3,14 @@ import { addPizzaToCart } from '../redux/actions/cart';
 import { useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
 
-function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
+function PizzaBlock({ imageUrl, name, types, price, sizes, id, addedPizzas }) {
     const dispatch = useDispatch();
 
     const availabaleTypes = ['тонкое', 'традиционное'];
     const availabaleSizes = [26, 30, 40];
 
     const [activeType, setActiveType] = React.useState(types[0]);
-    const [activeSize, setActiveSize] = React.useState(0);
+    const [activeSize, setActiveSize] = React.useState(!sizes.includes(availabaleSizes[0]) ? 1 : 0);
 
     const typeForCart = availabaleTypes[activeType];
     const sizeForCart = availabaleSizes[activeSize];
@@ -93,7 +93,7 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
+                    <i>{addedPizzas}</i>
                 </button>
             </div>
         </div >
