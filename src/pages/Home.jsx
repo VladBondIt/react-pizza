@@ -23,12 +23,7 @@ function Home() {
 
     useEffect(() => {
         dispatch(fetchPizzas(category, sortBy, orderSort));
-    }, [category, sortBy, orderSort])
-
-
-
-    console.log(cartItems);
-
+    }, [dispatch, category, sortBy, orderSort])
 
     const className = "content__items";
 
