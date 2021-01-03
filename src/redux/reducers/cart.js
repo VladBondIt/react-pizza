@@ -23,6 +23,7 @@ const cart = (state = initialState, action) => {
                 totalCount: allPizzas.length,
                 totalPrice: totalPrice,
             };
+        case 'REMOVE_PIZZA_CART':
 
         default:
             return state;

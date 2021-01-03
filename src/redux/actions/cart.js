@@ -3,6 +3,13 @@ const addPizzaToCart = (pizzaObj) => ({
     payload: pizzaObj
 })
 
+const removePizzaFromCart = (pizzaObj) => ({
+    type: 'REMOVE_PIZZA_CART',
+    payload: pizzaObj
+})
+
+
 export {
-    addPizzaToCart
+    addPizzaToCart,
+    removePizzaFromCart
 }
