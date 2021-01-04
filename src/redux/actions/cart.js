@@ -1,6 +1,6 @@
-const addPizzaToCart = (pizzaObj) => ({
+const addPizzaToCart = (addedPizzaObj) => ({
     type: 'ADD_PIZZA_CART',
-    payload: pizzaObj
+    payload: addedPizzaObj
 })
 
 const removePizzaFromCart = (pizzaObj) => ({

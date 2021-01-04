@@ -38,7 +38,6 @@ function Home() {
             <div className={items.length < 4 ? className + ' flex-start' : className + ''}>
                 {items.map((item) => isLoaded
                     ? <PizzaBlock
-                        addedPizzas={cartItems[item.id] ? cartItems[item.id].length : 0}
                         key={(Math.random() * 10)}
                         {...item} />
                     : Array(4).fill(<Loader />).map(x => <Loader key={(Math.random() * 10)} />)
