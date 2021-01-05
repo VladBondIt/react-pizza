@@ -7,6 +7,7 @@ function Cart() {
     const { totalPrice, totalCount, items } = useSelector(({ cart }) => cart);
 
     console.log(items);
+    console.log(totalCount);
 
     return (
 
