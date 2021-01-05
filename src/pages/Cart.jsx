@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 function Cart() {
     const { totalPrice, totalCount, items } = useSelector(({ cart }) => cart);
 
-    console.log(items);
 
     return (
 
@@ -33,7 +32,7 @@ function Cart() {
                     </div>
                 </div>
                 <div className="content__items">
-                    {items.map((item) => <CartItem key={Math.random() * 10} {...item} />)}
+                    {Object.values(items).flat(1).map((item) => <CartItem key={Math.random() * 10} {...item} />)}
                 </div>
                 <div className="cart__bottom">
                     <div className="cart__bottom-details">

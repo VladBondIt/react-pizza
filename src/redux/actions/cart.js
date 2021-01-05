@@ -1,11 +1,11 @@
-const addPizzaToCart = (addedPizzaObj) => ({
+const addPizzaToCart = (pizzaObj) => ({
     type: 'ADD_PIZZA_CART',
-    payload: addedPizzaObj
+    payload: pizzaObj
 })
 
-const removePizzaFromCart = (pizzaObj) => ({
+const removePizzaFromCart = (id) => ({
     type: 'REMOVE_PIZZA_CART',
-    payload: pizzaObj
+    payload: id
 })
 
 

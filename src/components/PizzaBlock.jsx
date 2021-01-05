@@ -3,7 +3,7 @@ import { addPizzaToCart } from '../redux/actions/cart';
 import { useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
 
-function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
+function PizzaBlock({ imageUrl, name, types, price, sizes, id, addedPizzas }) {
     const dispatch = useDispatch();
 
     const availabaleTypes = ['тонкое', 'традиционное'];
@@ -71,16 +71,14 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">{price}<svg className="ruble-svg"><use xlinkHref="#ruble" /></svg>  </div>
                 <button
-                    onClick={() => {
-                        onAddPizzaToCart({
-                            id,
-                            name,
-                            imageUrl,
-                            price,
-                            typeForCart,
-                            sizeForCart
-                        });
-                    }}
+                    onClick={() => onAddPizzaToCart({
+                        id,
+                        name,
+                        imageUrl,
+                        price,
+                        typeForCart,
+                        sizeForCart
+                    })}
                     className="button button--outline button--add">
                     <svg
                         width="12"
@@ -95,7 +93,7 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>0</i>
+                    <i>{addedPizzas}</i>
                 </button>
             </div>
         </div >

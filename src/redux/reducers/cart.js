@@ -1,5 +1,5 @@
 const initialState = {
-    items: [],
+    items: {},
     totalPrice: 0,
     totalCount: 0,
 }
@@ -7,40 +7,23 @@ const initialState = {
 const cart = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_PIZZA_CART':
-            console.log(state)
-
-            const newItems = [
+            const newItems = {
                 ...state.items,
-                action.payload
-            ]
-
-            const allPizzas = newItems.length;
-            const totalPrice = newItems.reduce((sum, obj) => sum + obj.price, 0);
-
-            return {
-                ...state,
-                items: newItems,
-                totalCount: allPizzas,
-                totalPrice: totalPrice,
+                [action.payload.id]: !state.items[action.payload.id]
+                    ? [action.payload]
+                    : [...state.items[action.payload.id], action.payload],
             };
-        case 'REMOVE_PIZZA_CART': {
-            const itemIndex = state.items
-                .filter((item) => item.id !== action.payload.id);
-            console.log(itemIndex)
 
-            const newItems = [
-                ...itemIndex
-            ];
-            const allPizzas = newItems.length;
-            const totalPrice = newItems.reduce((sum, obj) => sum + obj.price, 0);
+            const allPizzas = [].concat(...Object.values(newItems));
+            const totalPrice = allPizzas.reduce((sum, obj) => sum + obj.price, 0);
+
             return {
                 ...state,
                 items: newItems,
                 totalCount: allPizzas.length,
                 totalPrice: totalPrice,
             };
-
-        }
+        // case 'REMOVE_PIZZA_CART':
 
         default:
             return state;
