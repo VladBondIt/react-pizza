@@ -21,6 +21,13 @@ function Home() {
 
     const dispatch = useDispatch();
 
+    const handleAddPizzaToCart = (obj) => {
+        dispatch({
+            type: 'ADD_PIZZA_CART',
+            payload: obj,
+        });
+    };
+
     useEffect(() => {
         dispatch(fetchPizzas(category, sortBy, orderSort));
     }, [dispatch, category, sortBy, orderSort])
@@ -36,13 +43,16 @@ function Home() {
 
             <h2 className="content__title">Все пиццы</h2>
             <div className={items.length < 4 ? className + ' flex-start' : className + ''}>
-                {items.map((item) => isLoaded
-                    ? <PizzaBlock
-                        addedPizzas={cartItems[item.id] ? cartItems[item.id].length : 0}
-                        key={(Math.random() * 10)}
-                        {...item} />
-                    : Array(4).fill(<Loader />).map(x => <Loader key={(Math.random() * 10)} />)
-                )}
+                {isLoaded
+                    ? items.map((obj) => (
+                        <PizzaBlock
+                            onClickAddPizza={handleAddPizzaToCart}
+                            key={(Math.random() * 10)}
+                            addedCount={cartItems[obj.id] && cartItems[obj.id].items.length}
+                            {...obj}
+                        />
+                    ))
+                    : Array(4).fill(<Loader />).map(x => <Loader key={(Math.random() * 10)} />)}
             </div>
         </div>
     )
@@ -51,4 +61,6 @@ function Home() {
 export default Home;
 
 
-// { items, isLoaded, category, sortBy, orderSort, itemsCart }
+
+
+

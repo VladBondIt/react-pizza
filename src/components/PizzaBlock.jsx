@@ -1,19 +1,13 @@
 import React from 'react';
-import { addPizzaToCart } from '../redux/actions/cart';
-import { useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
 
-function PizzaBlock({ imageUrl, name, types, price, sizes, id, addedPizzas }) {
-    const dispatch = useDispatch();
+function PizzaBlock({ imageUrl, name, types, price, sizes, id, onClickAddPizza, addedCount }) {
 
-    const availabaleTypes = ['тонкое', 'традиционное'];
-    const availabaleSizes = [26, 30, 40];
+    const availableTypes = ['тонкое', 'традиционное'];
+    const availableSizes = [26, 30, 40];
 
     const [activeType, setActiveType] = React.useState(types[0]);
-    const [activeSize, setActiveSize] = React.useState(!sizes.includes(availabaleSizes[0]) ? 1 : 0);
-
-    const typeForCart = availabaleTypes[activeType];
-    const sizeForCart = availabaleSizes[activeSize];
+    const [activeSize, setActiveSize] = React.useState(!sizes.includes(availableSizes[0]) ? 1 : 0);
 
     const onSelectType = (i) => {
         setActiveType(i);
@@ -23,10 +17,18 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id, addedPizzas }) {
         setActiveSize(i);
     }
 
-    const onAddPizzaToCart = ({ ...obj }) => {
-        dispatch(addPizzaToCart(obj))
-    }
 
+    const onAddPizza = () => {
+        const obj = {
+            id,
+            name,
+            imageUrl,
+            price,
+            size: availableSizes[activeSize],
+            type: availableTypes[activeType],
+        };
+        onClickAddPizza(obj);
+    };
 
     return (
         <div
@@ -40,7 +42,7 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id, addedPizzas }) {
             <h4 className="pizza-block__title">{name}</h4>
             <div className="pizza-block__selector">
                 <ul>
-                    {availabaleTypes.map((type, i) => {
+                    {availableTypes.map((type, i) => {
                         let TypeClassName = !types.includes(i) ? 'disabled' : '';
                         TypeClassName += activeType === i ? ' active' : '';
                         return (
@@ -54,7 +56,7 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id, addedPizzas }) {
                     })}
                 </ul>
                 <ul>
-                    {availabaleSizes.map((size, i) => {
+                    {availableSizes.map((size, i) => {
                         let SizeClassName = !sizes.includes(size) ? 'disabled' : '';
                         SizeClassName += activeSize === i && SizeClassName !== 'disabled' ? ' active' : '';
                         return (
@@ -71,14 +73,7 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id, addedPizzas }) {
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">{price}<svg className="ruble-svg"><use xlinkHref="#ruble" /></svg>  </div>
                 <button
-                    onClick={() => onAddPizzaToCart({
-                        id,
-                        name,
-                        imageUrl,
-                        price,
-                        typeForCart,
-                        sizeForCart
-                    })}
+                    onClick={onAddPizza}
                     className="button button--outline button--add">
                     <svg
                         width="12"
@@ -93,7 +88,7 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id, addedPizzas }) {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>{addedPizzas}</i>
+                    {addedCount && <i>{addedCount}</i>}
                 </button>
             </div>
         </div >
