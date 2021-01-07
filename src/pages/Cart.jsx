@@ -1,13 +1,16 @@
 import React from 'react';
 import CartItem from '../components/CartItem';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { clearCart } from '../redux/actions/cart'
 
 function Cart() {
+    const dispatch = useDispatch();
     const { totalPrice, totalCount, items } = useSelector(({ cart }) => cart);
 
-    console.log(items);
-    console.log(totalCount);
+    const onClearCart = () => {
+        dispatch(clearCart())
+    }
 
     return (
 
@@ -30,7 +33,7 @@ function Cart() {
                             <path d="M11.6666 9.16667V14.1667" stroke="#B6B6B6" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
 
-                        <span>Очистить корзину</span>
+                        <span onClick={onClearCart}>Очистить корзину</span>
                     </div>
                 </div>
                 <div className="content__items">

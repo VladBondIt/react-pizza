@@ -1,5 +1,5 @@
 import React from 'react';
-import { addPizzaToCart } from '../redux/actions/cart';
+import { addPizzaToCart, setNotificationItems } from '../redux/actions/cart';
 import { useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
 
@@ -24,7 +24,9 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
     }
 
     const onAddPizzaToCart = ({ ...obj }) => {
-        dispatch(addPizzaToCart(obj))
+        const { name, typeForCart, sizeForCart } = obj;
+        dispatch(addPizzaToCart(obj));
+        dispatch(setNotificationItems({ name, typeForCart, sizeForCart }));
     }
 
 
@@ -95,7 +97,6 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>0</i>
                 </button>
             </div>
         </div >

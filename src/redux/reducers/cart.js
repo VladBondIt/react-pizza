@@ -1,5 +1,7 @@
 const initialState = {
     items: [],
+    notification: false,
+    itemsForNotification: [],
     totalPrice: 0,
     totalCount: 0,
 }
@@ -7,7 +9,6 @@ const initialState = {
 const cart = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_PIZZA_CART':
-            console.log(state)
 
             const newItems = [
                 ...state.items,
@@ -15,7 +16,7 @@ const cart = (state = initialState, action) => {
                     ...action.payload,
                     id: (Math.random() * 100)
                 }
-            ]
+            ];
 
             const allPizzas = newItems.length;
             const totalPrice = newItems.reduce((sum, obj) => sum + obj.price, 0);
@@ -27,14 +28,13 @@ const cart = (state = initialState, action) => {
                 totalPrice: totalPrice,
             };
         case 'REMOVE_PIZZA_CART': {
-            const itemIndex = state.items.filter((item) => item.id !== action.payload.id);
+            const filtreditem = state.items.filter((item) => item.id !== action.payload.id);
 
             const newItems = [
-                ...itemIndex
+                ...filtreditem
             ];
 
             const allPizzas = newItems.length;
-            console.log(itemIndex)
             const totalPrice = newItems.reduce((sum, obj) => sum + obj.price, 0);
             return {
                 ...state,
@@ -44,6 +44,42 @@ const cart = (state = initialState, action) => {
             };
 
         }
+        case 'CLEAR_CART': {
+            return {
+                items: [],
+                notification: false,
+                itemsForNotification: [],
+                totalCount: 0,
+                totalPrice: 0,
+            };
+        }
+        case 'SET_NOTIFICATION_ITEMS': {
+            return {
+                ...state,
+                itemsForNotification: [
+                    ...state.itemsForNotification,
+                    action.payload = {
+                        ...action.payload,
+                        id: (Math.random() * 100)
+                    },
+                ]
+            };
+        }
+        case 'DELETE_NOTIFICATION_ITEM': {
+            const index = state.itemsForNotification.length - 1;
+
+            const filtredNotifItems = state.itemsForNotification.filter((item) => item.id !== state.itemsForNotification[index].id);
+            console.log(filtredNotifItems)
+            return {
+                ...state,
+                itemsForNotification: [
+                    ...state.itemsForNotification,
+                    ...filtredNotifItems
+                ]
+            };
+        }
+
+
 
         default:
             return state;

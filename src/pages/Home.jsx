@@ -3,20 +3,23 @@ import { Categories, Sort, PizzaBlock } from '../components';
 import { fetchPizzas } from '../redux/actions/pizzas';
 import Loader from '../components/Loader';
 import { useSelector, useDispatch } from 'react-redux';
+import AddNotification from '../components/AddNotification';
 
 const categoryesName = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
 
 function Home() {
-    const { items, isLoaded, category, sortBy, orderSort, cartItems } = useSelector(({ pizzas, filters, cart }) => {
+    const { items, isLoaded, category, sortBy, orderSort, notif } = useSelector(({ pizzas, filters, cart }) => {
         return {
             items: pizzas.items,
             isLoaded: pizzas.isLoaded,
             category: filters.category,
             sortBy: filters.sortBy,
             orderSort: filters.orderSort,
-            cartItems: cart.items,
+            notif: cart.itemsForNotification,
         }
     });
+
+    console.log(notif.length);
 
 
     const dispatch = useDispatch();
@@ -44,11 +47,12 @@ function Home() {
                     : Array(4).fill(<Loader />).map(x => <Loader key={(Math.random() * 10)} />)}
 
             </div>
+            <ul className="notification">
+                {notif.length === 0 ? '' : notif.map((obj) => <AddNotification key={(Math.random() * 10)} {...obj} notif={notif} />)}
+            </ul>
         </div>
     )
 }
 
 export default Home;
 
-
-// { items, isLoaded, category, sortBy, orderSort, itemsCart }
