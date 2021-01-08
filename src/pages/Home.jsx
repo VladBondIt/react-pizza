@@ -48,7 +48,7 @@ function Home() {
 
             </div>
             <ul className="notification">
-                {notif.length === 0 ? '' : notif.map((obj) => <AddNotification key={(Math.random() * 10)} {...obj} notif={notif} />)}
+                {notif.length === 0 ? '' : notif.map((obj) => <AddNotification key={(Math.random() * 10)} {...obj} />)}
             </ul>
         </div>
     )
