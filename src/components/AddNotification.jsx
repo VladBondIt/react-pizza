@@ -1,25 +1,6 @@
 import React from 'react';
-import { deleteNotificationItem } from '../redux/actions/cart';
-import { useDispatch } from 'react-redux';
 
-function AddNotification({ name, sizeForCart, typeForCart, notif }) {
-    const dispatch = useDispatch();
-
-    console.log(notif);
-
-
-    const notificationTimeout = () => {
-        setTimeout(() => {
-            dispatch(deleteNotificationItem())
-        }, 5000);
-    }
-
-    React.useEffect(() => {
-        if (notif.length > 0) {
-            notificationTimeout();
-        }
-    }, [notif.length])
-
+function AddNotification({ name, sizeForCart, typeForCart }) {
 
     return (
         <li className="notification__list-item">

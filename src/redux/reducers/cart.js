@@ -73,7 +73,6 @@ const cart = (state = initialState, action) => {
             return {
                 ...state,
                 itemsForNotification: [
-                    ...state.itemsForNotification,
                     ...filtredNotifItems
                 ]
             };
