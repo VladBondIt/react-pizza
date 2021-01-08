@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { clearCart } from '../redux/actions/cart'
 
+import cartEmptyImage from '../assets/img/empty-cart.png'
+
 function Cart() {
     const dispatch = useDispatch();
     const { totalPrice, totalCount, items } = useSelector(({ cart }) => cart);
@@ -13,9 +15,8 @@ function Cart() {
     }
 
     return (
-
         <div className="container container--cart">
-            <div className="cart">
+            {totalCount ? <div className="cart">
                 <div className="cart__top">
                     <h2 className="content__title">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +58,22 @@ function Cart() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> : (
+                    <div className="cart cart--empty">
+                        <h2>
+                            Корзина пустая
+                        </h2>
+                        <p>
+                            Вероятней всего, вы не заказывали ещё пиццу.
+                            <br />
+                            Для того, чтобы заказать пиццу, перейди на главную страницу.
+                        </p>
+                        <img src={cartEmptyImage} alt="Empty cart" />
+                        <Link to="/" className="button button--black">
+                            <span>Вернуться назад</span>
+                        </Link>
+                    </div>
+                )}
         </div>
     )
 }

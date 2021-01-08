@@ -19,7 +19,7 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
         setTimeout(() => {
             console.log('delete notif');
             dispatch(deleteNotificationItem())
-        }, 3000);
+        }, 4000);
     }
 
     const onSelectType = (i) => {

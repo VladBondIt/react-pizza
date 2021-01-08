@@ -66,9 +66,8 @@ const cart = (state = initialState, action) => {
             };
         }
         case 'DELETE_NOTIFICATION_ITEM': {
-            const index = state.itemsForNotification.length - 1;
 
-            const filtredNotifItems = state.itemsForNotification.filter((item) => item.id !== state.itemsForNotification[index].id);
+            const filtredNotifItems = state.itemsForNotification.filter((item) => item.id !== state.itemsForNotification[0].id);
             console.log(filtredNotifItems)
             return {
                 ...state,
