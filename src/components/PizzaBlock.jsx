@@ -17,7 +17,6 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
 
     const notificationTimeout = () => {
         setTimeout(() => {
-            console.log('delete notif');
             dispatch(deleteNotificationItem())
         }, 4000);
     }
