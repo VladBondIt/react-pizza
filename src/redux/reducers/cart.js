@@ -19,7 +19,7 @@ const cart = (state = initialState, action) => {
             ];
 
             const allPizzas = newItems.length;
-            const totalPrice = newItems.reduce((sum, obj) => sum + obj.price, 0);
+            const totalPrice = newItems.reduce((sum, obj) => sum + obj.calcedPrice, 0);
 
             return {
                 ...state,
@@ -35,7 +35,7 @@ const cart = (state = initialState, action) => {
             ];
 
             const allPizzas = newItems.length;
-            const totalPrice = newItems.reduce((sum, obj) => sum + obj.price, 0);
+            const totalPrice = newItems.reduce((sum, obj) => sum + obj.calcedPrice, 0);
             return {
                 ...state,
                 items: newItems,
@@ -67,7 +67,8 @@ const cart = (state = initialState, action) => {
         }
         case 'DELETE_NOTIFICATION_ITEM': {
 
-            const filtredNotifItems = state.itemsForNotification.filter((item) => item.id !== state.itemsForNotification[0].id);
+            const filtredNotifItems = state.itemsForNotification
+                .filter((item) => item.id !== state.itemsForNotification[0].id);
             console.log(filtredNotifItems)
             return {
                 ...state,

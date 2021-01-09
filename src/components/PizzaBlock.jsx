@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { addPizzaToCart, setNotificationItems, deleteNotificationItem } from '../redux/actions/cart';
 import { useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
@@ -9,8 +9,9 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
     const availabaleTypes = ['тонкое', 'традиционное'];
     const availabaleSizes = [26, 30, 40];
 
-    const [activeType, setActiveType] = React.useState(types[0]);
-    const [activeSize, setActiveSize] = React.useState(!sizes.includes(availabaleSizes[0]) ? 1 : 0);
+    const [activeType, setActiveType] = useState(types[0]);
+    const [activeSize, setActiveSize] = useState(!sizes.includes(availabaleSizes[0]) ? 1 : 0);
+    const [calcedPrice, setPrice] = useState(price);
 
     const typeForCart = availabaleTypes[activeType];
     const sizeForCart = availabaleSizes[activeSize];
@@ -21,8 +22,14 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
         }, 4000);
     }
 
-    const onSelectType = (i) => {
+    const onSelectType = (i, type) => {
         setActiveType(i);
+        setActiveSize(0);
+        if (type === 'традиционное') {
+            setPrice(price + 18)
+        } else {
+            setPrice(price)
+        }
     }
 
     const onSelectSize = (i) => {
@@ -34,6 +41,41 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
         dispatch(addPizzaToCart(obj));
         dispatch(setNotificationItems({ name, typeForCart, sizeForCart }));
         notificationTimeout();
+    }
+
+
+    const onCalcPriceBySize = (size) => {
+        setPrice(price);
+        if (activeType === 0) {
+            switch (size) {
+                case 26:
+                    setPrice(price)
+                    break;
+                case 30:
+                    setPrice(price + 21)
+                    break;
+                case 40:
+                    setPrice(price + 29)
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (size) {
+                case 26:
+                    setPrice(price + 18)
+                    break;
+                case 30:
+                    setPrice(price + 37)
+                    break;
+                case 40:
+                    setPrice(price + 48)
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 
 
@@ -56,7 +98,7 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
                             <li
                                 key={i + (Math.random() * 10)}
                                 onClick={() => {
-                                    onSelectType(i)
+                                    onSelectType(i, type);
                                 }}
                                 className={TypeClassName} > {type}</li >
                         )
@@ -70,7 +112,8 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
                             <li
                                 key={i + (Math.random() * 10)}
                                 onClick={() => {
-                                    onSelectSize(i)
+                                    onSelectSize(i);
+                                    onCalcPriceBySize(size);
                                 }}
                                 className={SizeClassName} >{size} см</li >
                         )
@@ -78,14 +121,17 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
                 </ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">{price}<svg className="ruble-svg"><use xlinkHref="#ruble" /></svg>  </div>
+                <div className="pizza-block__price">
+                    {calcedPrice}
+                    <svg className="ruble-svg"><use xlinkHref="#ruble" /></svg>
+                </div>
                 <button
                     onClick={() => {
                         onAddPizzaToCart({
                             id,
                             name,
                             imageUrl,
-                            price,
+                            calcedPrice,
                             typeForCart,
                             sizeForCart
                         });
