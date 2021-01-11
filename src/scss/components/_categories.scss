@@ -1,9 +1,17 @@
-@import 'variables';
+@import "variables";
 
 .categories {
+  @media (max-width: 1289px) {
+    flex: 0 1 100%;
+  }
   ul {
     display: flex;
-
+    flex-wrap: wrap;
+    @media (max-width: 1289px) {
+      justify-content: space-around;
+      margin-bottom: 20px;
+      flex: 0 1 100%;
+    }
     li {
       background-color: #f9f9f9;
       padding: 13px 30px;
@@ -25,6 +33,17 @@
       &.active {
         background-color: #282828;
         color: #fff;
+      }
+      @media (max-width: 1270px) {
+        flex: 0 1 30%;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      @media (max-width: 1060px) {
+        flex: 0 1 45%;
+      }
+      @media (max-width: 520px) {
+        flex: 0 1 75%;
       }
     }
   }

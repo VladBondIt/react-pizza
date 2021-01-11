@@ -7,10 +7,10 @@ function AddNotification({ name, sizeForCart, typeForCart }) {
     return (
         <li className="notification__list-item">
             <Link to="/cart">
-                Добавлено в корзину:
-            <span className="notification__name">{name}</span>
-            ,<span className="notification__type">{typeForCart}</span>
-            ,<span className="notification__size">{sizeForCart} см</span>
+                <span>Добавлено в корзину:</span>
+                <span className="notification__name">{name},</span>
+                <span className="notification__type">{typeForCart},</span>
+                <span className="notification__size">{sizeForCart} см</span>
             </Link>
         </li>
 

@@ -19,8 +19,6 @@ function Home() {
         }
     });
 
-    console.log(notif.length);
-
 
     const dispatch = useDispatch();
 
@@ -28,7 +26,6 @@ function Home() {
         dispatch(fetchPizzas(category, sortBy, orderSort));
     }, [dispatch, category, sortBy, orderSort])
 
-    const className = "content__items";
 
     return (
         <div className="container">
@@ -38,7 +35,7 @@ function Home() {
             </div>
 
             <h2 className="content__title">Все пиццы</h2>
-            <div className={items.length < 4 ? className + ' flex-start' : className + ''}>
+            <div className="content__items">
                 {isLoaded
                     ? items.map((item) =>
                         <PizzaBlock

@@ -9,11 +9,22 @@
     align-items: center;
     justify-content: space-between;
   }
-
+  &__body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 100%;
+    @media (max-width: 550px) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
   &__logo {
     display: flex;
     cursor: pointer;
-
+    @media (max-width: 550px) {
+      margin-bottom: 20px;
+    }
     img {
       margin-right: 15px;
     }
