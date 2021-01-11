@@ -4,6 +4,9 @@ const initialState = {
     itemsForNotification: [],
     totalPrice: 0,
     totalCount: 0,
+    showClearPopup: false,
+    showDeletePopup: false,
+    idForDelete: null
 }
 
 const cart = (state = initialState, action) => {
@@ -69,7 +72,6 @@ const cart = (state = initialState, action) => {
 
             const filtredNotifItems = state.itemsForNotification
                 .filter((item) => item.id !== state.itemsForNotification[0].id);
-            console.log(filtredNotifItems)
             return {
                 ...state,
                 itemsForNotification: [
@@ -77,7 +79,24 @@ const cart = (state = initialState, action) => {
                 ]
             };
         }
-
+        case 'SET_SHOW_CLEAR_POPUP': {
+            return {
+                ...state,
+                showClearPopup: action.payload,
+            };
+        }
+        case 'SET_SHOW_DELETE_POPUP': {
+            return {
+                ...state,
+                showDeletePopup: action.payload,
+            };
+        }
+        case 'SET_ID_FOR_DELETE': {
+            return {
+                ...state,
+                idForDelete: action.payload,
+            };
+        }
 
 
         default:

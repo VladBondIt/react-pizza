@@ -20,11 +20,29 @@ const setNotificationItems = (smallObj) => ({
     payload: smallObj
 })
 
+const setShowClearPopup = (clearBoolean) => ({
+    type: 'SET_SHOW_CLEAR_POPUP',
+    payload: clearBoolean
+})
+const setShowDeletePopup = (deleteBoolean) => ({
+    type: 'SET_SHOW_DELETE_POPUP',
+    payload: deleteBoolean
+})
+
+const setIdForDelete = (objIdFordelete) => ({
+    type: 'SET_ID_FOR_DELETE',
+    payload: objIdFordelete
+})
+
 
 export {
     addPizzaToCart,
     removePizzaFromCart,
     clearCart,
     deleteNotificationItem,
-    setNotificationItems
+    setNotificationItems,
+    setShowClearPopup,
+    setShowDeletePopup,
+    setIdForDelete
+
 }

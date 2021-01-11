@@ -98,6 +98,7 @@
     @media (max-width: 430px) {
       margin-top: 15px;
     }
+
     span {
       display: inline-block;
       margin-left: 7px;
@@ -109,6 +110,10 @@
     svg,
     path {
       transition: all $duration ease-in-out;
+      @media (max-width: 922px) {
+        stroke: darken($color: #b6b6b6, $amount: 50);
+        color: darken($color: #b6b6b6, $amount: 50);
+      }
     }
 
     &:hover {
@@ -221,6 +226,10 @@
       }
 
       .button {
+        @media (max-width: 922px) {
+          border-color: darken($color: $gray-line, $amount: 80);
+          background-color: darken($color: $gray-line, $amount: 80);
+        }
         svg {
           width: 11.5px;
           height: 11.5px;
@@ -278,9 +287,12 @@
         @media (max-width: 505px) {
           margin-bottom: 20px;
         }
+        @media (max-width: 922px) {
+          background-color: darken($color: $gray-line, $amount: 90);
+          border-color: darken($color: $gray-line, $amount: 90);
+        }
         span {
           color: darken($color: $gray-line, $amount: 20);
-          font-weight: 500;
           font-weight: 600;
         }
 
@@ -358,7 +370,7 @@
 
 .notification {
   position: fixed;
-  bottom: 30px;
+  bottom: 15px;
   left: 50%;
   transform: translate(-50%, 0);
   opacity: 0.9;
@@ -371,7 +383,7 @@
   }
   &__box {
     display: flex;
-    padding: 15px 20px;
+    padding: 10px 20px;
     margin-bottom: 10px;
     justify-content: center;
     align-items: center;
@@ -395,5 +407,42 @@
     text-transform: capitalize;
   }
   &__size {
+  }
+}
+
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  &.active {
+    display: flex;
+  }
+  &__body {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 15px;
+    @include adaptiv-font(20, 16);
+    background-color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin: 0 5px;
+  }
+  &__text {
+    display: block;
+    margin-bottom: 15px;
+  }
+  &__buttons {
+    & button {
+      &:first-child {
+        margin-right: 10px;
+      }
+      font-size: 16px;
+    }
   }
 }
