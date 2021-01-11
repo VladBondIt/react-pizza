@@ -265,15 +265,19 @@
       display: flex;
       justify-content: space-between;
       margin-top: 40px;
-
+      @media (max-width: 505px) {
+        flex-direction: column;
+        align-items: center;
+      }
       .go-back-btn {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 210px;
-
         border-color: darken($color: $gray-line, $amount: 10);
-
+        @media (max-width: 505px) {
+          margin-bottom: 20px;
+        }
         span {
           color: darken($color: $gray-line, $amount: 20);
           font-weight: 500;
