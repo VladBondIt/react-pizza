@@ -17,9 +17,9 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
     const sizeForCart = availabaleSizes[activeSize];
 
     const notificationTimeout = () => {
-        // setTimeout(() => {
-        //     dispatch(deleteNotificationItem())
-        // }, 3000);
+        setTimeout(() => {
+            dispatch(deleteNotificationItem())
+        }, 3000);
     }
 
     const onSelectType = (i, type) => {

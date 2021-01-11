@@ -359,17 +359,23 @@
   transform: translate(-50%, 0);
   opacity: 0.9;
   &__list-item {
-    display: flex;
     background-color: white;
-    justify-content: center;
-    align-items: center;
     border-radius: 50px;
     box-shadow: 2px 2px 20px #000;
-    font-size: 20px;
-    padding: 15px 20px;
+    @include adaptiv-font(20, 12);
     cursor: pointer;
-    &:not(:last-child) {
-      margin-bottom: 10px;
+  }
+  &__box {
+    display: flex;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 768px) {
+      padding: 10px 10px;
+    }
+    @media (max-width: 525px) {
+      flex-wrap: wrap;
     }
   }
   & span {
@@ -377,6 +383,7 @@
       font-weight: 600;
     }
     margin-right: 3px;
+    white-space: nowrap;
   }
   &__name {
   }
