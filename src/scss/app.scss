@@ -4,7 +4,7 @@
 
 @import "components/all";
 
-.outsideBg {
+.outside {
   background-color: $background;
   padding: 50px 0;
   @media (max-width: 620px) {
@@ -420,6 +420,10 @@
     width: 0;
     transition: all 0.5s;
     margin-right: 10px;
+    @media (max-width: 922px) {
+      width: auto;
+      transform: scale(1);
+    }
     &.active {
       width: auto;
       transform: scale(1);

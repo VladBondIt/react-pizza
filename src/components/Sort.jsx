@@ -31,7 +31,7 @@ function Sort() {
 
 
     useEffect(() => {
-        document.querySelector('.outsideBg').addEventListener('click', (e) => {
+        document.querySelector('.outside').addEventListener('click', (e) => {
             if (!e.target.matches('.sort__list-item') && !e.target.matches('.sort__name')) {
                 onClosePopup();
             }
