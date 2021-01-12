@@ -32,16 +32,12 @@ const cart = (state = initialState, action) => {
         case 'REMOVE_PIZZA_CART': {
             const filtreditem = state.items.filter((item) => item.clientId !== action.payload.clientId);
 
-            const newItems = [
-                ...filtreditem
-            ];
-
-            const allPizzas = newItems.length;
-            const totalPrice = newItems.reduce((sum, obj) => sum + obj.calcedPrice, 0);
+            const allPizzas = filtreditem.length;
+            const totalPrice = filtreditem.reduce((sum, obj) => sum + obj.calcedPrice, 0);
 
             return {
                 ...state,
-                items: newItems,
+                items: filtreditem,
                 totalCount: allPizzas,
                 totalPrice: totalPrice,
             };
@@ -69,14 +65,17 @@ const cart = (state = initialState, action) => {
         }
         case 'DELETE_NOTIFICATION_ITEM': {
 
-            const filtredNotifItems = state.itemsForNotification
-                .filter((item) => item.clientId !== state.itemsForNotification[0].clientId);
+            const filtredNotifItems = state.itemsForNotification.filter((item) => item.clientId !== action.payload);
 
             return {
                 ...state,
-                itemsForNotification: [
-                    ...filtredNotifItems
-                ]
+                itemsForNotification: filtredNotifItems
+            };
+        }
+        case 'CLEAR_NOTIFICATION_ITEMS': {
+            return {
+                ...state,
+                itemsForNotification: []
             };
         }
         case 'SET_SHOW_CLEAR_POPUP': {

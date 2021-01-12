@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addPizzaToCart, setNotificationItems, deleteNotificationItem } from '../redux/actions/cart';
+import { addPizzaToCart, setNotificationItems } from '../redux/actions/cart';
 import { useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
 
@@ -15,12 +15,6 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
 
     const typeForCart = availabaleTypes[activeType];
     const sizeForCart = availabaleSizes[activeSize];
-
-    const notificationTimeout = () => {
-        setTimeout(() => {
-            dispatch(deleteNotificationItem())
-        }, 3000);
-    }
 
     const onSelectType = (i, type) => {
         setActiveType(i);
@@ -40,7 +34,6 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
         const { name, typeForCart, sizeForCart } = obj;
         dispatch(addPizzaToCart(obj));
         dispatch(setNotificationItems({ name, typeForCart, sizeForCart }));
-        notificationTimeout();
     }
 
 

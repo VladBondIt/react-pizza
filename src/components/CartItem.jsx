@@ -2,14 +2,16 @@ import React from 'react';
 // import { removePizzaFromCart } from '../redux/actions/cart';
 // import { useDispatch } from 'react-redux';
 
-function CartItem({ clientId, name, imageUrl, calcedPrice, sizeForCart, typeForCart, onDeleteShowPopup, onSetIdForDelete }) {
+function CartItem({
+    clientId,
+    name,
+    imageUrl,
+    calcedPrice,
+    sizeForCart,
+    typeForCart,
+    onDeleteShowPopup,
+    onSetIdForDelete }) {
 
-    // const dispatch = useDispatch();
-
-
-    // const onRemovePizzaFromCart = ({ ...obj }) => {
-    //     // dispatch(removePizzaFromCart())
-    // }
 
     const onHandleShowDeletePopup = ({ ...obj }) => {
         onDeleteShowPopup();

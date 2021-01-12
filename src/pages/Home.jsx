@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Categories, Sort, PizzaBlock, AddNotification, Loader } from '../components';
 import { fetchPizzas } from '../redux/actions/pizzas';
 import { useSelector, useDispatch } from 'react-redux';
+import { onClearNotificationItems } from '../redux/actions/cart';
 
 const categoryesName = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
 
@@ -21,7 +22,8 @@ function Home() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchPizzas(category, sortBy, orderSort));
+        dispatch(fetchPizzas(category, sortBy, orderSort))
+        dispatch(onClearNotificationItems());
     }, [dispatch, category, sortBy, orderSort])
 
 
