@@ -5,3 +5,5 @@ export { default as PizzaBlock } from './PizzaBlock';
 export { default as ClearPopup } from './ClearPopup';
 export { default as RemovePopup } from './RemovePopup';
 export { default as CartItem } from './CartItem';
+export { default as Loader } from './Loader';
+export { default as AddNotification } from './AddNotification';

@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
-import { Categories, Sort, PizzaBlock } from '../components';
+import { Categories, Sort, PizzaBlock, AddNotification, Loader } from '../components';
 import { fetchPizzas } from '../redux/actions/pizzas';
-import Loader from '../components/Loader';
 import { useSelector, useDispatch } from 'react-redux';
-import AddNotification from '../components/AddNotification';
 
 const categoryesName = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
 

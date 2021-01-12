@@ -16,8 +16,7 @@ const cart = (state = initialState, action) => {
             const newItems = [
                 ...state.items,
                 action.payload = {
-                    ...action.payload,
-                    id: (Math.random() * 100)
+                    ...action.payload
                 }
             ];
 
@@ -31,7 +30,7 @@ const cart = (state = initialState, action) => {
                 totalPrice: totalPrice,
             };
         case 'REMOVE_PIZZA_CART': {
-            const filtreditem = state.items.filter((item) => item.id !== action.payload.id);
+            const filtreditem = state.items.filter((item) => item.clientId !== action.payload.clientId);
 
             const newItems = [
                 ...filtreditem
@@ -39,6 +38,7 @@ const cart = (state = initialState, action) => {
 
             const allPizzas = newItems.length;
             const totalPrice = newItems.reduce((sum, obj) => sum + obj.calcedPrice, 0);
+
             return {
                 ...state,
                 items: newItems,
@@ -63,7 +63,6 @@ const cart = (state = initialState, action) => {
                     ...state.itemsForNotification,
                     action.payload = {
                         ...action.payload,
-                        id: (Math.random() * 100)
                     },
                 ]
             };
@@ -71,7 +70,8 @@ const cart = (state = initialState, action) => {
         case 'DELETE_NOTIFICATION_ITEM': {
 
             const filtredNotifItems = state.itemsForNotification
-                .filter((item) => item.id !== state.itemsForNotification[0].id);
+                .filter((item) => item.clientId !== state.itemsForNotification[0].clientId);
+
             return {
                 ...state,
                 itemsForNotification: [

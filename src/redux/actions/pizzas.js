@@ -27,7 +27,7 @@ const fetchPizzas = (category, sortBy, orderSort) => dispatch => {
 
 const setPizzas = (items) => ({
     type: 'SET_PIZZAS',
-    payload: items,
+    payload: items
 });
 
 export {

@@ -1,6 +1,9 @@
 const addPizzaToCart = (addedPizzaObj) => ({
     type: 'ADD_PIZZA_CART',
-    payload: addedPizzaObj
+    payload: {
+        ...addedPizzaObj,
+        clientId: (Math.random() * 100)
+    }
 })
 
 const removePizzaFromCart = (pizzaObj) => ({
@@ -17,7 +20,10 @@ const deleteNotificationItem = () => ({
 })
 const setNotificationItems = (smallObj) => ({
     type: 'SET_NOTIFICATION_ITEMS',
-    payload: smallObj
+    payload: {
+        ...smallObj,
+        clientId: (Math.random() * 100)
+    }
 })
 
 const setShowClearPopup = (clearBoolean) => ({
@@ -44,5 +50,4 @@ export {
     setShowClearPopup,
     setShowDeletePopup,
     setIdForDelete
-
 }
