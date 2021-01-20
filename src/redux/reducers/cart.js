@@ -54,10 +54,14 @@ const cart = (state = initialState, action) => {
             };
         }
         case 'SET_NOTIFICATION_ITEMS': {
+            const length = state.itemsForNotification.length
+            const newItemsNotif = length > 1
+                ? state.itemsForNotification.slice(1, length)
+                : state.itemsForNotification;
             return {
                 ...state,
                 itemsForNotification: [
-                    ...state.itemsForNotification,
+                    ...newItemsNotif,
                     action.payload = {
                         ...action.payload,
                     },
