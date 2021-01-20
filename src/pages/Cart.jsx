@@ -54,7 +54,7 @@ function Cart() {
                     </div>
                     <div className="content__items">
                         {items.map((item) => <CartItem
-                            key={Math.random() * 10}
+                            key={item.dataForKey}
                             {...item}
                             onDeleteShowPopup={onDeleteShowPopup}
                             onSetIdForDelete={onSetIdForDelete} />)}

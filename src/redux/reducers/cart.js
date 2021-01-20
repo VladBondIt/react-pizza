@@ -16,7 +16,8 @@ const cart = (state = initialState, action) => {
             const newItems = [
                 ...state.items,
                 action.payload = {
-                    ...action.payload
+                    ...action.payload,
+                    dataForKey: Date.now().toString(16)
                 }
             ];
 

@@ -24,7 +24,7 @@ const Categories = memo(function Categories({ items }) {
         return <li
             className={listClassName}
             onClick={() => onSelectItem(i)}
-            key={Math.random() * 10} > {name}</li >
+            key={name} > {name}</li >
     })
 
     return (
@@ -64,7 +64,7 @@ export default Categories;
 //                     this.onSelectItem(i)
 //                     outputName(name)
 //                 }}
-//                 key={Math.random() * 10}>{name}
+//                 key={name}>{name}
 //             </li>
 //         })
 

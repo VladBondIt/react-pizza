@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { onClearNotificationItems } from '../redux/actions/cart';
 
 const categoryesName = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
+const arrKeys = [1, 2, 3, 4]
 
 function Home() {
     const { items, isLoaded, category, sortBy, orderSort, notif } = useSelector(({ pizzas, filters, cart }) => {
@@ -17,6 +18,7 @@ function Home() {
             notif: cart.itemsForNotification,
         }
     });
+
 
 
     const dispatch = useDispatch();
@@ -39,13 +41,13 @@ function Home() {
                 {isLoaded
                     ? items.map((item) =>
                         <PizzaBlock
-                            key={(Math.random() * 10)}
+                            key={item.id}
                             {...item} />)
-                    : Array(4).fill(<Loader />).map(x => <Loader key={(Math.random() * 10)} />)}
+                    : arrKeys.map(numKey => <Loader key={numKey} />)}
 
             </div>
             <ul className="notification">
-                {notif.length === 0 ? '' : notif.map((obj) => <AddNotification key={(Math.random() * 10)} {...obj} />)}
+                {notif.length === 0 ? '' : notif.map((obj) => <AddNotification key={obj.clientId} {...obj} />)}
             </ul>
         </div>
     )

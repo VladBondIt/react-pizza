@@ -4,11 +4,7 @@ import { setSortBy, setOrderSort, setSortSelectList } from '../redux/actions/fil
 
 const SortPopup = memo(function SortPopup({ items, changeSortText, onKeyPressed, showPopup }) {
 
-    const { sortSelect } = useSelector(({ filters }) => {
-        return {
-            sortSelect: filters.sortSelect,
-        }
-    });
+    const { sortSelect } = useSelector(({ filters }) => filters);
 
     const [activeItem, setActiveItem] = useState(0);
 
@@ -50,7 +46,7 @@ const SortPopup = memo(function SortPopup({ items, changeSortText, onKeyPressed,
                     onSelectSort(i, type);
                     changeSortText(name);
                 }}
-                key={Math.random() * 10}
+                key={name}
                 className={listClassName}>
                 {name}
             </li>

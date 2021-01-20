@@ -75,7 +75,7 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
     return (
         <div
             className='pizza-block'
-            key={id + (Math.random() * 10)}>
+            key={id}>
             <img
                 className="pizza-block__image"
                 src={imageUrl}
@@ -89,7 +89,7 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
                         TypeClassName += activeType === i ? ' active' : '';
                         return (
                             <li
-                                key={i + (Math.random() * 10)}
+                                key={id + type}
                                 onClick={() => {
                                     onSelectType(i, type);
                                 }}
@@ -103,7 +103,7 @@ function PizzaBlock({ imageUrl, name, types, price, sizes, id }) {
                         SizeClassName += activeSize === i && SizeClassName !== 'disabled' ? ' active' : '';
                         return (
                             <li
-                                key={i + (Math.random() * 10)}
+                                key={id + size}
                                 onClick={() => {
                                     onSelectSize(i);
                                     onCalcPriceBySize(size);
