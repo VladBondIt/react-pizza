@@ -5,7 +5,7 @@ const setLoaded = (payload) => ({
 
 
 const fetchPizzas = (category, sortBy, orderSort) => dispatch => {
-    const apiUrl = 'http://localhost:3004/pizzas';
+    const apiUrl = 'http://localhost:3000/pizzas';
     const categoryUrl = `?category=${category - 1}`;
     const sortUrl = `&_sort=${sortBy}&_order=${orderSort}`;
 
