@@ -31,7 +31,7 @@ function AddNotification({ clientId, name, sizeForCart, typeForCart }) {
             onMouseEnter={onEnterHover}
             onMouseLeave={onLeaveHover}
             className="notification__list-item">
-            <Link to="/cart">
+            <Link to="/react-pizza/cart">
                 <div className="notification__box">
                     <span>Добавлено в корзину:</span>
                     <span className="notification__name">{name},</span>

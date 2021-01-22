@@ -9,14 +9,14 @@ function Header() {
         <div className="header">
             <div className="container">
                 <div className="header__body">
-                    <Link to="/" className="header__logo">
+                    <Link to="/react-pizza/" className="header__logo">
                         <img width="38" src={logo} alt="Pizza logo" />
                         <div>
                             <h1>React Pizza</h1>
                             <p>самая вкусная пицца во вселенной</p>
                         </div>
                     </Link>
-                    <Link to="/cart" className="header__cart">
+                    <Link to="/react-pizza/cart" className="header__cart">
                         <HeaderButton />
                     </Link>
                 </div>
