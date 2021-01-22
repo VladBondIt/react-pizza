@@ -31,8 +31,8 @@ function App() {
                 className="wrapper">
                 <Header />
                 <div className="content">
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/cart" component={Cart} />
+                    <Route exact path="/react-pizza/" component={Home} />
+                    <Route exact path="/react-pizza/cart" component={Cart} />
                 </div>
             </div>
         </div>
