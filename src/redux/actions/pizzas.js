@@ -5,7 +5,7 @@ const setLoaded = (payload) => ({
 
 
 const fetchPizzas = (category, sortBy, orderSort) => dispatch => {
-    const apiUrl = 'https://my-json-server.typicode.com/VladBondIt/FakeDBjson/pizzas';
+    const apiUrl = 'https://my-json-server.typicode.com/VladBondIt/PizzaDb';
     const categoryUrl = `?category=${category - 1}`;
     const sortUrl = `&_sort=${sortBy}&_order=${orderSort}`;
 
